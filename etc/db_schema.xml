@@ -1,0 +1,56 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © OpenGento, All rights reserved.
+ * See LICENSE bundled with this library for license details.
+ */
+-->
+<schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Setup/Declaration/Schema/etc/schema.xsd">
+    <table name="opengento_document_type" resource="default" engine="innodb" comment="opengento_document_type">
+        <column xsi:type="int" name="entity_id" padding="10" unsigned="true" nullable="false" identity="true" comment="Document Type Entity ID"/>
+        <column xsi:type="varchar" name="code" nullable="false" length="255" comment="Document Type Identifier"/>
+        <column xsi:type="boolean" name="scheduled_import" nullable="false" comment="Document Type Schedule Import"/>
+        <column xsi:type="text" name="name" nullable="false" comment="Document Type Title"/>
+        <column xsi:type="text" name="file_source_path" nullable="false" comment="Files Source Path of the Document Type"/>
+        <column xsi:type="text" name="file_dest_path" nullable="false" comment="Files Destination Path of the Document Type"/>
+        <column xsi:type="int" name="sub_path_length" padding="11" unsigned="false" nullable="false" identity="false" comment="Destination Sub Path Length of the Document Type"/>
+        <column xsi:type="text" name="file_pattern" nullable="false" comment="Document File Pattern"/>
+        <column xsi:type="text" name="file_allowed_extensions" nullable="false" comment="Document Allowed Extensions"/>
+        <column xsi:type="text" name="default_image_file_name" nullable="false" comment="Document Default Image File Name"/>
+        <column xsi:type="timestamp" name="created_at" on_update="false" nullable="false" default="CURRENT_TIMESTAMP" comment="Created_at"/>
+        <column xsi:type="timestamp" name="updated_at" on_update="true" nullable="true" default="CURRENT_TIMESTAMP" comment="Updated_at"/>
+        <constraint xsi:type="primary" referenceId="PRIMARY">
+            <column name="entity_id"/>
+        </constraint>
+        <constraint xsi:type="unique" referenceId="OPENGENTO_DOCUMENT_TYPE_CODE">
+            <column name="code"/>
+        </constraint>
+        <index referenceId="OPENGENTO_DOCUMENT_TYPE_SCHEDULED_IMPORT" indexType="btree">
+            <column name="scheduled_import"/>
+        </index>
+    </table>
+    <table name="opengento_document" resource="default" engine="innodb" comment="opengento_document">
+        <column xsi:type="int" name="entity_id" padding="10" unsigned="true" nullable="false" identity="true" comment="Document Entity ID"/>
+        <column xsi:type="int" name="type_id" padding="10" unsigned="true" nullable="false" identity="false" comment="Document related Type ID"/>
+        <column xsi:type="varchar" name="code" nullable="false" length="255" comment="Document Identifier"/>
+        <column xsi:type="text" name="name" nullable="false" comment="Document Name"/>
+        <column xsi:type="text" name="description" nullable="false" comment="Document Description"/>
+        <column xsi:type="varchar" name="file_locale" nullable="true" length="8" comment="Document Locale"/>
+        <column xsi:type="text" name="file_name" nullable="false" comment="Document File Name"/>
+        <column xsi:type="text" name="file_path" nullable="false" comment="Document File Relative Path"/>
+        <column xsi:type="text" name="image_file_name" nullable="true" comment="Document Image File Name"/>
+        <column xsi:type="timestamp" name="created_at" on_update="false" nullable="false" default="CURRENT_TIMESTAMP" comment="Created_at"/>
+        <column xsi:type="timestamp" name="updated_at" on_update="true" nullable="true" default="CURRENT_TIMESTAMP" comment="Updated_at"/>
+        <constraint xsi:type="primary" referenceId="PRIMARY">
+            <column name="entity_id"/>
+        </constraint>
+        <constraint xsi:type="foreign" referenceId="OPENGENTO_DOCUMENT_TYPE_ID_OPENGENTO_DOCUMENT_TYPE_ENTITY_ID" table="opengento_document" column="type_id" referenceTable="opengento_document_type" referenceColumn="entity_id" onDelete="CASCADE"/>
+        <constraint xsi:type="unique" referenceId="OPENGENTO_DOCUMENT_CODE_TYPE_ID">
+            <column name="code"/>
+            <column name="type_id"/>
+        </constraint>
+        <index referenceId="OPENGENTO_DOCUMENT_NAME" indexType="fulltext">
+            <column name="name"/>
+        </index>
+    </table>
+</schema>

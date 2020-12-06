@@ -15,9 +15,7 @@ use Magento\Framework\View\ConfigInterface;
 use Opengento\Document\Model\Document\Helper\File;
 use function array_slice;
 use function basename;
-use function dirname;
 use function implode;
-use function str_split;
 use function strtolower;
 use const DIRECTORY_SEPARATOR;
 
