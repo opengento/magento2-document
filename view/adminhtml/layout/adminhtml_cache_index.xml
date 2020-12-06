@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © OpenGento, All rights reserved.
+ * See LICENSE bundled with this library for license details.
+ */
+-->
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <body>
+        <referenceBlock name="cache.additional" template="Magento_Backend::system/cache/additional.phtml">
+            <block name="opengento.document.system.cache.images" template="Opengento_Document::system/cache/images.phtml">
+                <arguments>
+                    <argument name="cleanImagesUrl" xsi:type="url" path="document/cache/cleanimages"/>
+                    <argument name="permissions" xsi:type="object">Opengento\Document\ViewModel\Adminhtml\Cache\Permissions</argument>
+                </arguments>
+            </block>
+        </referenceBlock>
+    </body>
+</page>

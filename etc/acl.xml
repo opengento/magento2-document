@@ -1,0 +1,29 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © OpenGento, All rights reserved.
+ * See LICENSE bundled with this library for license details.
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Acl/etc/acl.xsd">
+    <acl>
+        <resources>
+            <resource id="Magento_Backend::admin">
+                <resource id="Opengento_Document::general" title="Module Document General" translate="title" sortOrder="10">
+                    <resource id="Opengento_Document::settings" title="Document Settings" translate="title" sortOrder="10"/>
+                    <resource id="Opengento_Document::flush_images" title="Document Images" translate="title" sortOrder="10"/>
+                    <resource id="Opengento_Document::document_type" title="Document Type" translate="title" sortOrder="20">
+                        <resource id="Opengento_Document::document_type_save" title="save" translate="title" sortOrder="10"/>
+                        <resource id="Opengento_Document::document_type_delete" title="delete" translate="title" sortOrder="20"/>
+                        <resource id="Opengento_Document::document_type_view" title="view" translate="title" sortOrder="30"/>
+                    </resource>
+                    <resource id="Opengento_Document::document" title="Document" translate="title" sortOrder="30">
+                        <resource id="Opengento_Document::document_save" title="save" translate="title" sortOrder="10"/>
+                        <resource id="Opengento_Document::document_delete" title="delete" translate="title" sortOrder="20"/>
+                        <resource id="Opengento_Document::document_view" title="view" translate="title" sortOrder="30"/>
+                    </resource>
+                </resource>
+            </resource>
+        </resources>
+    </acl>
+</config>

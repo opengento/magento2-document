@@ -1,0 +1,13 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Event/etc/events.xsd">
+    <event name="clean_document_images_cache_after">
+        <observer name="flush_varnish_pagecache" instance="Magento\CacheInvalidate\Observer\FlushAllCacheObserver"/>
+        <observer name="flush_all_pagecache" instance="Magento\PageCache\Observer\InvalidateCache" />
+    </event>
+</config>

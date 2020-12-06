@@ -1,0 +1,54 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © OpenGento, All rights reserved.
+ * See LICENSE bundled with this library for license details.
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <preference for="Opengento\Document\Controller\Adminhtml\Type\Save\HandlerInterface" type="Opengento\Document\Controller\Adminhtml\Type\Save\ProcessHandler"/>
+    <preference for="Opengento\Document\Controller\Adminhtml\Index\Save\HandlerInterface" type="Opengento\Document\Controller\Adminhtml\Index\Save\ProcessHandler"/>
+    <type name="Opengento\Document\Controller\Adminhtml\Type\Save\DefaultHandler">
+        <arguments>
+            <argument name="allowedFields" xsi:type="array">
+                <item name="entity_id" xsi:type="boolean">true</item>
+                <item name="code" xsi:type="boolean">true</item>
+                <item name="scheduled_import" xsi:type="boolean">true</item>
+                <item name="name" xsi:type="boolean">true</item>
+                <item name="file_source_path" xsi:type="boolean">true</item>
+                <item name="file_dest_path" xsi:type="boolean">true</item>
+                <item name="sub_path_length" xsi:type="boolean">true</item>
+                <item name="file_pattern" xsi:type="boolean">true</item>
+            </argument>
+        </arguments>
+    </type>
+    <type name="Opengento\Document\Controller\Adminhtml\Index\Save\DefaultHandler">
+        <arguments>
+            <argument name="allowedFields" xsi:type="array">
+                <item name="entity_id" xsi:type="boolean">true</item>
+                <item name="type_id" xsi:type="boolean">true</item>
+                <item name="code" xsi:type="boolean">true</item>
+                <item name="name" xsi:type="boolean">true</item>
+                <item name="description" xsi:type="boolean">true</item>
+                <item name="file_locale" xsi:type="boolean">true</item>
+            </argument>
+        </arguments>
+    </type>
+    <type name="Opengento\Document\Controller\Adminhtml\Type\Save\ProcessHandler">
+        <arguments>
+            <argument name="handlers" xsi:type="array">
+                <item name="default" xsi:type="object">Opengento\Document\Controller\Adminhtml\Type\Save\DefaultHandler</item>
+                <item name="allowedExtensions" xsi:type="object">Opengento\Document\Controller\Adminhtml\Type\Save\AllowedExtensionsHandler</item>
+                <item name="file" xsi:type="object">Opengento\Document\Controller\Adminhtml\Type\Save\FileHandler</item>
+            </argument>
+        </arguments>
+    </type>
+    <type name="Opengento\Document\Controller\Adminhtml\Index\Save\ProcessHandler">
+        <arguments>
+            <argument name="handlers" xsi:type="array">
+                <item name="default" xsi:type="object">Opengento\Document\Controller\Adminhtml\Index\Save\DefaultHandler</item>
+                <item name="file" xsi:type="object">Opengento\Document\Controller\Adminhtml\Index\Save\FileHandler</item>
+            </argument>
+        </arguments>
+    </type>
+</config>

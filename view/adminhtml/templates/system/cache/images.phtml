@@ -1,0 +1,32 @@
+<?php
+/**
+ * Copyright © OpenGento, All rights reserved.
+ * See LICENSE bundled with this library for license details.
+ */
+declare(strict_types=1);
+
+use Magento\Framework\Escaper;
+use Magento\Framework\View\Element\Template;
+use Magento\Framework\View\Helper\SecureHtmlRenderer;
+use Opengento\Document\ViewModel\Adminhtml\Cache\Permissions;
+
+/** @var Template $block */
+/** @var Escaper $escaper */
+/** @var SecureHtmlRenderer $secureRenderer */
+
+/** @var Permissions $permissions */
+$permissions = $block->getData('permissions');
+?>
+<?php if ($permissions->hasAccessToFlushDocumentImages()): ?>
+    <p>
+        <button id="flushDocumentImages" type="button">
+            <?= $escaper->escapeHtml(__('Flush Document Images Cache')) ?>
+        </button>
+        <?= /* @noEscape */ $secureRenderer->renderEventListenerAsTag(
+            'onclick',
+            'setLocation(\'' . $escaper->escapeJs($block->getData('cleanImagesUrl')) . '\')',
+            'button#flushDocumentImages'
+        ) ?>
+        <span><?= $escaper->escapeHtml(__('Pregenerated document images files')) ?></span>
+    </p>
+<?php endif; ?>

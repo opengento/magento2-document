@@ -1,0 +1,192 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © OpenGento, All rights reserved.
+ * See LICENSE bundled with this library for license details.
+ */
+-->
+<listing xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Ui:etc/ui_configuration.xsd">
+    <argument name="data" xsi:type="array">
+        <item name="js_config" xsi:type="array">
+            <item name="provider" xsi:type="string">document_listing.document_listing_data_source</item>
+        </item>
+    </argument>
+    <settings>
+        <spinner>document_listing_columns</spinner>
+        <deps>
+            <dep>document_listing.document_listing_data_source</dep>
+        </deps>
+        <buttons>
+            <button name="add">
+                <url path="*/*/new"/>
+                <class>primary</class>
+                <label translate="true">Add New document</label>
+            </button>
+        </buttons>
+    </settings>
+    <dataSource name="document_listing_data_source">
+        <argument name="data" xsi:type="array">
+            <item name="js_config" xsi:type="array">
+                <item name="component" xsi:type="string">Magento_Ui/js/grid/provider</item>
+            </item>
+        </argument>
+        <settings>
+            <updateUrl path="mui/index/render"/>
+            <storageConfig>
+                <param name="indexField" xsi:type="string">entity_id</param>
+            </storageConfig>
+        </settings>
+        <dataProvider name="document_listing_data_source" class="Magento\Framework\View\Element\UiComponent\DataProvider\DataProvider">
+            <settings>
+                <primaryFieldName>entity_id</primaryFieldName>
+                <requestFieldName>id</requestFieldName>
+            </settings>
+        </dataProvider>
+    </dataSource>
+    <listingToolbar name="listing_top">
+        <settings>
+            <sticky>true</sticky>
+        </settings>
+        <bookmark name="bookmarks"/>
+        <columnsControls name="columns_controls"/>
+        <filters name="listing_filters">
+            <argument name="data" xsi:type="array">
+                <item name="observers" xsi:type="array">
+                    <item name="column" xsi:type="string">column</item>
+                </item>
+            </argument>
+            <settings>
+                <templates>
+                    <filters>
+                        <select>
+                            <param name="template" xsi:type="string">ui/grid/filters/elements/ui-select</param>
+                            <param name="component" xsi:type="string">Magento_Ui/js/form/element/ui-select</param>
+                        </select>
+                    </filters>
+                </templates>
+            </settings>
+        </filters>
+        <paging name="listing_paging"/>
+        <massaction name="listing_massaction">
+            <action name="delete">
+                <settings>
+                    <confirm>
+                        <message translate="true">Are you sure you want to delete the selected documents?</message>
+                        <title translate="true">Delete items</title>
+                    </confirm>
+                    <url path="document/index/massDelete"/>
+                    <type>delete</type>
+                    <label translate="true">Delete</label>
+                </settings>
+            </action>
+        </massaction>
+    </listingToolbar>
+    <columns name="document_listing_columns">
+        <selectionsColumn name="ids" sortOrder="10">
+            <settings>
+                <indexField>entity_id</indexField>
+            </settings>
+        </selectionsColumn>
+        <column name="entity_id" sortOrder="20">
+            <settings>
+                <label translate="true">Document ID</label>
+                <filter>textRange</filter>
+                <sorting>asc</sorting>
+            </settings>
+        </column>
+        <column name="type_id" component="Magento_Ui/js/grid/columns/select" sortOrder="30">
+            <settings>
+                <dataType>select</dataType>
+                <label translate="true">Type Name</label>
+                <filter>select</filter>
+                <options class="Opengento\Document\Model\Config\Source\DocumentTypes"/>
+            </settings>
+        </column>
+        <column name="code" sortOrder="40">
+            <settings>
+                <label translate="true">Code</label>
+                <filter>text</filter>
+            </settings>
+        </column>
+        <column name="name" sortOrder="50">
+            <settings>
+                <label translate="true">Name</label>
+                <filter>text</filter>
+            </settings>
+        </column>
+        <column name="description" sortOrder="60">
+            <settings>
+                <label translate="true">Description</label>
+                <filter>text</filter>
+                <visible>false</visible>
+            </settings>
+        </column>
+        <column name="file_locale" component="Magento_Ui/js/grid/columns/select" sortOrder="70">
+            <settings>
+                <dataType>select</dataType>
+                <label translate="true">File Locale</label>
+                <filter>select</filter>
+                <options class="Magento\Config\Model\Config\Source\Locale"/>
+                <visible>false</visible>
+            </settings>
+        </column>
+        <column name="file_name" sortOrder="80">
+            <settings>
+                <label translate="true">File Name</label>
+                <filter>text</filter>
+                <visible>false</visible>
+            </settings>
+        </column>
+        <column name="file_path" sortOrder="90">
+            <settings>
+                <label translate="true">File Path</label>
+                <filter>text</filter>
+                <visible>false</visible>
+            </settings>
+        </column>
+        <column name="image_file_name" class="Opengento\Document\Ui\Component\Listing\Column\Thumbnail" component="Magento_Ui/js/grid/columns/thumbnail" sortOrder="100">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="editUrlPath" xsi:type="string">document/index/edit</item>
+                    <item name="editParamName" xsi:type="string">id</item>
+                    <item name="indexField" xsi:type="string">entity_id</item>
+                </item>
+            </argument>
+            <settings>
+                <label translate="true">Thumbnail</label>
+                <filter>text</filter>
+                <visible>false</visible>
+                <altField>name</altField>
+                <hasPreview>1</hasPreview>
+                <sortable>false</sortable>
+            </settings>
+        </column>
+        <column name="created_at" class="Magento\Ui\Component\Listing\Columns\Date" component="Magento_Ui/js/grid/columns/date" sortOrder="110">
+            <settings>
+                <dataType>date</dataType>
+                <label translate="true">Created At</label>
+                <filter>dateRange</filter>
+            </settings>
+        </column>
+        <column name="updated_at" class="Magento\Ui\Component\Listing\Columns\Date" component="Magento_Ui/js/grid/columns/date" sortOrder="120">
+            <settings>
+                <dataType>date</dataType>
+                <label translate="true">Updated At</label>
+                <filter>dateRange</filter>
+            </settings>
+        </column>
+        <actionsColumn name="actions" class="Opengento\Document\Ui\Component\Listing\Column\Actions" sortOrder="130">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="editUrlPath" xsi:type="string">document/index/edit</item>
+                    <item name="editParamName" xsi:type="string">id</item>
+                    <item name="deleteUrlPath" xsi:type="string">document/index/delete</item>
+                    <item name="deleteParamName" xsi:type="string">id</item>
+                </item>
+            </argument>
+            <settings>
+                <indexField>entity_id</indexField>
+            </settings>
+        </actionsColumn>
+    </columns>
+</listing>

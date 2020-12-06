@@ -1,0 +1,191 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © OpenGento, All rights reserved.
+ * See LICENSE bundled with this library for license details.
+ */
+-->
+<form xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Ui:etc/ui_configuration.xsd">
+    <argument name="data" xsi:type="array">
+        <item name="js_config" xsi:type="array">
+            <item name="provider" xsi:type="string">document_type_form.document_type_form_data_source</item>
+            <item name="deps" xsi:type="string">document_type_form.document_type_form_data_source</item>
+        </item>
+        <item name="template" xsi:type="string">templates/form/collapsible</item>
+    </argument>
+    <settings>
+        <buttons>
+            <button name="save" class="Opengento\Document\Ui\Component\DocumentType\Form\Button\SaveButton"/>
+            <button name="save_and_continue" class="Opengento\Document\Ui\Component\DocumentType\Form\Button\SaveAndContinueButton"/>
+            <button name="delete" class="Opengento\Document\Ui\Component\DocumentType\Form\Button\DeleteButton"/>
+            <button name="reset" class="Opengento\Document\Ui\Component\Form\Button\ResetButton"/>
+            <button name="back" class="Opengento\Document\Ui\Component\Form\Button\BackButton"/>
+        </buttons>
+        <namespace>document_type_form</namespace>
+        <dataScope>data</dataScope>
+    </settings>
+    <dataSource name="document_type_form_data_source">
+        <argument name="data" xsi:type="array">
+            <item name="js_config" xsi:type="array">
+                <item name="component" xsi:type="string">Magento_Ui/js/form/provider</item>
+            </item>
+        </argument>
+        <settings>
+            <submitUrl path="document/type/save"/>
+        </settings>
+        <dataProvider name="document_type_form_data_source" class="Opengento\Document\Ui\DataProvider\DocumentType\Form\DataProvider">
+            <settings>
+                <primaryFieldName>entity_id</primaryFieldName>
+                <requestFieldName>id</requestFieldName>
+            </settings>
+        </dataProvider>
+    </dataSource>
+    <fieldset name="document_type_form_fieldset" sortOrder="10">
+        <settings>
+            <label translate="true">Document Type Information</label>
+        </settings>
+        <hidden name="entity_id" sortOrder="10">
+            <settings>
+                <dataType>text</dataType>
+                <dataScope>entity_id</dataScope>
+            </settings>
+        </hidden>
+        <input name="code" sortOrder="20">
+            <settings>
+                <dataType>text</dataType>
+                <label translate="true">Code</label>
+                <visible>true</visible>
+                <validation>
+                    <rule name="required-entry" xsi:type="boolean">true</rule>
+                </validation>
+                <dataScope>code</dataScope>
+            </settings>
+        </input>
+        <field name="scheduled_import" formElement="select" sortOrder="30">
+            <settings>
+                <dataType>select</dataType>
+                <label translate="true">Scheduled Import</label>
+                <validation>
+                    <rule name="required-entry" xsi:type="boolean">true</rule>
+                </validation>
+                <dataScope>scheduled_import</dataScope>
+            </settings>
+            <formElements>
+                <select>
+                    <settings>
+                        <options class="Magento\Config\Model\Config\Source\Enabledisable"/>
+                        <caption translate="true">-- Please Select --</caption>
+                    </settings>
+                </select>
+            </formElements>
+        </field>
+        <input name="name" sortOrder="40">
+            <settings>
+                <dataType>text</dataType>
+                <label translate="true">Name</label>
+                <visible>true</visible>
+                <validation>
+                    <rule name="required-entry" xsi:type="boolean">true</rule>
+                </validation>
+                <dataScope>name</dataScope>
+            </settings>
+        </input>
+        <input name="file_source_path" sortOrder="50">
+            <settings>
+                <dataType>text</dataType>
+                <label translate="true">Source Path</label>
+                <notice translate="true">Relative path from the media/document/file/ base directory.</notice>
+                <visible>true</visible>
+                <validation>
+                    <rule name="required-entry" xsi:type="boolean">true</rule>
+                </validation>
+                <dataScope>file_source_path</dataScope>
+            </settings>
+        </input>
+        <input name="file_dest_path" sortOrder="60">
+            <settings>
+                <dataType>text</dataType>
+                <label translate="true">Destination Path</label>
+                <notice translate="true">Relative path from the media/document/file/ base directory.</notice>
+                <visible>true</visible>
+                <validation>
+                    <rule name="required-entry" xsi:type="boolean">true</rule>
+                </validation>
+                <dataScope>file_dest_path</dataScope>
+            </settings>
+        </input>
+        <input name="sub_path_length" sortOrder="70">
+            <settings>
+                <dataType>text</dataType>
+                <label translate="true">Sub-path Length</label>
+                <notice translate="true">Defines how many sub-folders are generated to store the file.</notice>
+                <visible>true</visible>
+                <validation>
+                    <rule name="required-entry" xsi:type="boolean">true</rule>
+                    <rule name="validate-zero-or-greater" xsi:type="boolean">true</rule>
+                </validation>
+                <dataScope>sub_path_length</dataScope>
+            </settings>
+        </input>
+        <input name="file_pattern" sortOrder="80">
+            <settings>
+                <dataType>text</dataType>
+                <label translate="true">File Pattern</label>
+                <notice translate="true">Defines the file pattern to match on the import.</notice>
+                <visible>true</visible>
+                <validation>
+                    <rule name="required-entry" xsi:type="boolean">true</rule>
+                </validation>
+                <dataScope>file_pattern</dataScope>
+            </settings>
+        </input>
+        <dynamicRows name="file_allowed_extensions" sortOrder="90">
+            <settings>
+                <label translate="true">File Allowed Extensions</label>
+                <addButton>true</addButton>
+                <addButtonLabel translate="true">Add Extension</addButtonLabel>
+                <recordTemplate>record</recordTemplate>
+                <deleteProperty>false</deleteProperty>
+                <dndConfig>
+                    <param name="enabled" xsi:type="boolean">false</param>
+                </dndConfig>
+            </settings>
+            <container name="record" component="Magento_Ui/js/dynamic-rows/record">
+                <argument name="data" xsi:type="array">
+                    <item name="config" xsi:type="array">
+                        <item name="isTemplate" xsi:type="boolean">true</item>
+                        <item name="is_collection" xsi:type="boolean">true</item>
+                        <item name="showFallbackReset" xsi:type="boolean">false</item>
+                    </item>
+                </argument>
+                <input name="extension" sortOrder="10">
+                    <settings>
+                        <dataType>text</dataType>
+                        <label translate="true">Extension</label>
+                        <visible>true</visible>
+                        <validation>
+                            <rule name="required-entry" xsi:type="boolean">true</rule>
+                        </validation>
+                        <dataScope>extension</dataScope>
+                    </settings>
+                </input>
+                <actionDelete/>
+            </container>
+        </dynamicRows>
+        <fileUploader name="image_uploader" template="ui/form/element/uploader/uploader" sortOrder="100">
+            <settings>
+                <label translate="true">Default Image File</label>
+                <notice translate="true">We will use the default image when type's documents does not have one.</notice>
+                <visible>true</visible>
+                <validation>
+                    <rule name="required-entry" xsi:type="boolean">true</rule>
+                </validation>
+                <placeholderType>image</placeholderType>
+                <uploaderConfig>
+                    <param name="url" xsi:type="url" path="document/type/upload"/>
+                </uploaderConfig>
+                <dataScope>image_uploader</dataScope>
+            </settings>
+        </fileUploader>
+    </fieldset>
+</form>

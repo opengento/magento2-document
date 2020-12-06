@@ -1,0 +1,41 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © OpenGento, All rights reserved.
+ * See LICENSE bundled with this library for license details.
+ */
+-->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+    <xs:element name="config">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="documentType" type="documentTypeComplex" maxOccurs="unbounded"/>
+            </xs:sequence>
+        </xs:complexType>
+        <xs:unique name="uniqueDocumentTypeCode">
+            <xs:annotation>
+                <xs:documentation>Document Type code must be unique.</xs:documentation>
+            </xs:annotation>
+            <xs:selector xpath="documentType"/>
+            <xs:field xpath="@code"/>
+        </xs:unique>
+    </xs:element>
+    <xs:complexType name="documentTypeComplex">
+        <xs:sequence>
+            <xs:element type="xs:boolean" name="scheduledImport"/>
+            <xs:element type="xs:string" name="name"/>
+            <xs:element type="xs:string" name="fileSourcePath"/>
+            <xs:element type="xs:string" name="fileDestPath"/>
+            <xs:element type="xs:integer" name="subPathLength"/>
+            <xs:element type="xs:string" name="filePattern"/>
+            <xs:element type="fileAllowedExtensionsComplex" name="fileAllowedExtensions" minOccurs="0"/>
+            <xs:element type="xs:string" name="defaultImageFileName"/>
+        </xs:sequence>
+        <xs:attribute type="xs:string" name="code"/>
+    </xs:complexType>
+    <xs:complexType name="fileAllowedExtensionsComplex">
+        <xs:sequence>
+            <xs:element type="xs:string" name="extension" minOccurs="1" maxOccurs="unbounded"/>
+        </xs:sequence>
+    </xs:complexType>
+</xs:schema>

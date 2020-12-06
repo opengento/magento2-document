@@ -1,0 +1,268 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © OpenGento, All rights reserved.
+ * See LICENSE bundled with this library for license details.
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <!-- Service Contract -->
+    <preference for="Opengento\Document\Api\Data\DocumentTypeInterface" type="Opengento\Document\Model\DocumentType"/>
+    <preference for="Opengento\Document\Api\Data\DocumentTypeSearchResultsInterface" type="Magento\Framework\Api\SearchResults"/>
+    <preference for="Opengento\Document\Api\Data\DocumentInterface" type="Opengento\Document\Model\Document"/>
+    <preference for="Opengento\Document\Api\Data\DocumentSearchResultsInterface" type="Magento\Framework\Api\SearchResults"/>
+    <preference for="Opengento\Document\Api\DocumentTypeRepositoryInterface" type="Opengento\Document\Model\DocumentTypeRepository"/>
+    <preference for="Opengento\Document\Api\DocumentRepositoryInterface" type="Opengento\Document\Model\DocumentRepository"/>
+    <preference for="Opengento\Document\Model\Document\ImportInterface" type="Opengento\Document\Model\Document\Import"/>
+    <preference for="Opengento\Document\Model\Document\ImportResultsInterface" type="Opengento\Document\Model\Document\ImportResults"/>
+    <preference for="Opengento\Document\Model\Document\Import\ResultInterface" type="Opengento\Document\Model\Document\Import\Result"/>
+    <preference for="Opengento\Document\Model\DocumentType\RegistryInterface" type="Opengento\Document\Model\DocumentType\Registry"/>
+    <preference for="Opengento\Document\Model\Document\RegistryInterface" type="Opengento\Document\Model\Document\Registry"/>
+    <preference for="Opengento\Document\Model\DocumentType\AuthorizationInterface" type="Opengento\Document\Model\DocumentType\Authorization"/>
+    <type name="Magento\Framework\EntityManager\HydratorPool">
+        <arguments>
+            <argument name="hydrators" xsi:type="array">
+                <item name="Opengento\Document\Api\Data\DocumentTypeInterface" xsi:type="string">Magento\Framework\EntityManager\AbstractModelHydrator</item>
+                <item name="Opengento\Document\Api\Data\DocumentInterface" xsi:type="string">Magento\Framework\EntityManager\AbstractModelHydrator</item>
+            </argument>
+        </arguments>
+    </type>
+    <virtualType name="Opengento\Document\Model\ResourceModel\DocumentType\RelationComposite" type="Magento\Framework\Model\ResourceModel\Db\VersionControl\RelationComposite">
+        <arguments>
+            <argument name="relationProcessors" xsi:type="array">
+                <item name="file" xsi:type="object">Opengento\Document\Model\ResourceModel\DocumentType\Relation\File</item>
+            </argument>
+        </arguments>
+    </virtualType>
+    <type name="Opengento\Document\Model\ResourceModel\DocumentType">
+        <arguments>
+            <argument name="entityRelationComposite" xsi:type="object">Opengento\Document\Model\ResourceModel\DocumentType\RelationComposite</argument>
+        </arguments>
+    </type>
+    <virtualType name="Opengento\Document\Model\ResourceModel\Document\RelationComposite" type="Magento\Framework\Model\ResourceModel\Db\VersionControl\RelationComposite">
+        <arguments>
+            <argument name="relationProcessors" xsi:type="array">
+                <item name="file" xsi:type="object">Opengento\Document\Model\ResourceModel\Document\Relation\File</item>
+            </argument>
+        </arguments>
+    </virtualType>
+    <type name="Opengento\Document\Model\ResourceModel\Document">
+        <arguments>
+            <argument name="entityRelationComposite" xsi:type="object">Opengento\Document\Model\ResourceModel\Document\RelationComposite</argument>
+        </arguments>
+    </type>
+    <!-- Cache Settings -->
+    <virtualType name="Opengento\Document\Model\ResourceModel\DocumentType\Collection\FetchStrategy" type="Magento\Framework\Data\Collection\Db\FetchStrategy\Cache">
+        <arguments>
+            <argument name="cacheIdPrefix" xsi:type="const">Opengento\Document\Model\DocumentType::CACHE_TAG</argument>
+            <argument name="cacheTags" xsi:type="array">
+                <item name="documentTypeTag" xsi:type="const">Opengento\Document\Model\DocumentType::CACHE_TAG</item>
+            </argument>
+            <argument name="cacheLifetime" xsi:type="boolean">false</argument>
+        </arguments>
+    </virtualType>
+    <type name="Opengento\Document\Model\ResourceModel\DocumentType\Collection">
+        <arguments>
+            <argument name="fetchStrategy" xsi:type="object">Opengento\Document\Model\ResourceModel\DocumentType\Collection\FetchStrategy</argument>
+        </arguments>
+    </type>
+    <virtualType name="Opengento\Document\Model\ResourceModel\Document\Collection\FetchStrategy" type="Magento\Framework\Data\Collection\Db\FetchStrategy\Cache">
+        <arguments>
+            <argument name="cacheIdPrefix" xsi:type="const">Opengento\Document\Model\Document::CACHE_TAG</argument>
+            <argument name="cacheTags" xsi:type="array">
+                <item name="documentTypeTag" xsi:type="const">Opengento\Document\Model\Document::CACHE_TAG</item>
+            </argument>
+            <argument name="cacheLifetime" xsi:type="boolean">false</argument>
+        </arguments>
+    </virtualType>
+    <type name="Opengento\Document\Model\ResourceModel\Document\Collection">
+        <arguments>
+            <argument name="fetchStrategy" xsi:type="object">Opengento\Document\Model\ResourceModel\Document\Collection\FetchStrategy</argument>
+        </arguments>
+    </type>
+    <virtualType name="Opengento\Document\Model\Cache\Document" type="Opengento\Document\Model\Cache\Cache">
+        <arguments>
+            <argument name="cacheList" xsi:type="array">
+                <item name="block_html" xsi:type="const">Magento\Framework\App\Cache\Type\Block::TYPE_IDENTIFIER</item>
+                <item name="collections" xsi:type="const">Magento\Framework\App\Cache\Type\Collection::TYPE_IDENTIFIER</item>
+            </argument>
+            <argument name="tags" xsi:type="array">
+                <item name="document" xsi:type="const">Opengento\Document\Model\Document::CACHE_TAG</item>
+            </argument>
+        </arguments>
+    </virtualType>
+    <!-- Global Settings -->
+    <preference for="Opengento\Document\Model\Document\Operation\CreateFromFileInterface" type="Opengento\Document\Model\Document\Operation\CreateFromFile"/>
+    <type name="Opengento\Document\Model\Document\ProcessorFactory">
+        <arguments>
+            <argument name="processors" xsi:type="array">
+                <item name="simple" xsi:type="string">Opengento\Document\Model\Document\Processor\SimpleProcessor</item>
+            </argument>
+        </arguments>
+    </type>
+    <type name="Opengento\Document\Model\File\Uploader">
+        <arguments>
+            <argument name="codeMessages" xsi:type="array">
+                <item name="1" xsi:type="array">
+                    <item name="code" xsi:type="const">UPLOAD_ERR_OK</item>
+                    <item name="message" xsi:type="string" translatable="true">The file has been successfully uploaded.</item>
+                </item>
+                <item name="2" xsi:type="array">
+                    <item name="code" xsi:type="const">UPLOAD_ERR_INI_SIZE</item>
+                    <item name="message" xsi:type="string" translatable="true">The uploaded file exceeds the maximum file size upload allowed on the server.</item>
+                </item>
+                <item name="3" xsi:type="array">
+                    <item name="code" xsi:type="const">UPLOAD_ERR_FORM_SIZE</item>
+                    <item name="message" xsi:type="string" translatable="true">The uploaded file exceeds the maximum file size upload allowed on the form.</item>
+                </item>
+                <item name="4" xsi:type="array">
+                    <item name="code" xsi:type="const">UPLOAD_ERR_PARTIAL</item>
+                    <item name="message" xsi:type="string" translatable="true">The uploaded file was only partially uploaded.</item>
+                </item>
+                <item name="5" xsi:type="array">
+                    <item name="code" xsi:type="const">UPLOAD_ERR_NO_FILE</item>
+                    <item name="message" xsi:type="string" translatable="true">No file was uploaded.</item>
+                </item>
+                <item name="6" xsi:type="array">
+                    <item name="code" xsi:type="const">UPLOAD_ERR_NO_TMP_DIR</item>
+                    <item name="message" xsi:type="string" translatable="true">Missing a temporary folder.</item>
+                </item>
+                <item name="7" xsi:type="array">
+                    <item name="code" xsi:type="const">UPLOAD_ERR_CANT_WRITE</item>
+                    <item name="message" xsi:type="string" translatable="true">Failed to write file to disk.</item>
+                </item>
+                <item name="8" xsi:type="array">
+                    <item name="code" xsi:type="const">UPLOAD_ERR_EXTENSION</item>
+                    <item name="message" xsi:type="string" translatable="true">File upload has suddenly stopped.</item>
+                </item>
+            </argument>
+        </arguments>
+    </type>
+    <type name="Opengento\Document\Model\File\UploaderHandler">
+        <arguments>
+            <argument name="imgAllowedExtensions" xsi:type="array">
+               <item name="jpg" xsi:type="string">jpg</item>
+                <item name="jpeg" xsi:type="string">jpeg</item>
+                <item name="png" xsi:type="string">png</item>
+                <item name="gif" xsi:type="string">gif</item>
+                <item name="tiff" xsi:type="string">tiff</item>
+                <item name="bmp" xsi:type="string">bmp</item>
+                <item name="svg" xsi:type="string">svg</item>
+                <item name="svgz" xsi:type="string">svgz</item>
+                <item name="webp" xsi:type="string">webp</item>
+                <item name="ico" xsi:type="string">ico</item>
+                <item name="tff" xsi:type="string">tff</item>
+                <item name="jpe" xsi:type="string">jpe</item>
+            </argument>
+        </arguments>
+    </type>
+    <type name="Opengento\Document\Console\Command\ImportDocuments">
+        <arguments>
+            <argument name="statusUpdater" xsi:type="object">Opengento\Document\Model\Document\Import\StatusUpdater\Cli</argument>
+        </arguments>
+    </type>
+    <type name="Magento\Framework\Console\CommandList">
+        <arguments>
+            <argument name="commands" xsi:type="array">
+                <item name="opengento_document_import" xsi:type="object">Opengento\Document\Console\Command\ImportDocuments</item>
+            </argument>
+        </arguments>
+    </type>
+    <!-- Configuration Schema Settings -->
+    <type name="Opengento\Document\Model\Config\DocumentType\Converter">
+        <arguments>
+            <argument name="nodeConverters" xsi:type="array">
+                <item name="default" xsi:type="object">Opengento\Document\Model\Config\DocumentType\Converter\NodeConverter</item>
+                <item name="fileAllowedExtensionsComplex" xsi:type="object">Opengento\Document\Model\Config\DocumentType\Converter\FileAllowedExtensionsConverter</item>
+            </argument>
+        </arguments>
+    </type>
+    <virtualType name="Opengento\Document\Config\DocumentType\SchemaLocator" type="Magento\Framework\Config\GenericSchemaLocator">
+        <arguments>
+            <argument name="moduleName" xsi:type="string">Opengento_Document</argument>
+            <argument name="schema" xsi:type="string">resource_document_types_merged.xsd</argument>
+            <argument name="perFileSchema" xsi:type="string">resource_document_types.xsd</argument>
+        </arguments>
+    </virtualType>
+    <virtualType name="Opengento\Document\Config\DocumentType\Reader" type="Magento\Framework\Config\Reader\Filesystem">
+        <arguments>
+            <argument name="converter" xsi:type="object">Opengento\Document\Model\Config\DocumentType\Converter</argument>
+            <argument name="schemaLocator" xsi:type="object">Opengento\Document\Config\DocumentType\SchemaLocator</argument>
+            <argument name="fileName" xsi:type="string">resource_document_types.xml</argument>
+            <argument name="idAttributes" xsi:type="array">
+                <item name="config/documentType" xsi:type="string">code</item>
+            </argument>
+        </arguments>
+    </virtualType>
+    <virtualType name="Opengento\Document\Config\DocumentType\ConfigData" type="Magento\Framework\Config\Data">
+        <arguments>
+            <argument name="reader" xsi:type="object">Opengento\Document\Config\DocumentType\Reader</argument>
+            <argument name="cacheId" xsi:type="string">resource_document_types</argument>
+        </arguments>
+    </virtualType>
+    <type name="Opengento\Document\Model\Config\DocumentType\SyncData">
+        <arguments>
+            <argument name="configData" xsi:type="object">Opengento\Document\Config\DocumentType\ConfigData</argument>
+        </arguments>
+    </type>
+    <type name="Opengento\Document\Model\Config\Source\ReadOnlyDocumentTypes">
+        <arguments>
+            <argument name="configData" xsi:type="object">Opengento\Document\Config\DocumentType\ConfigData</argument>
+        </arguments>
+    </type>
+    <!-- UI Components -->
+    <virtualType name="Opengento\Document\Ui\Component\DataProvider\Document\Collection" type="Magento\Framework\View\Element\UiComponent\DataProvider\SearchResult">
+        <arguments>
+            <argument name="mainTable" xsi:type="string">opengento_document</argument>
+            <argument name="resourceModel" xsi:type="string">Opengento\Document\Model\ResourceModel\Document</argument>
+        </arguments>
+    </virtualType>
+    <virtualType name="Opengento\Document\Ui\Component\DataProvider\DocumentType\Collection" type="Magento\Framework\View\Element\UiComponent\DataProvider\SearchResult">
+        <arguments>
+            <argument name="mainTable" xsi:type="string">opengento_document_type</argument>
+            <argument name="resourceModel" xsi:type="string">Opengento\Document\Model\ResourceModel\DocumentType</argument>
+        </arguments>
+    </virtualType>
+    <type name="Magento\Framework\View\Element\UiComponent\DataProvider\CollectionFactory">
+        <arguments>
+            <argument name="collections" xsi:type="array">
+                <item name="document_listing_data_source" xsi:type="string">Opengento\Document\Ui\Component\DataProvider\Document\Collection</item>
+                <item name="document_type_listing_data_source" xsi:type="string">Opengento\Document\Ui\Component\DataProvider\DocumentType\Collection</item>
+            </argument>
+        </arguments>
+    </type>
+    <virtualType name="Opengento\Document\Ui\DataProvider\DocumentType\Form\Modifier\Pool" type="Magento\Ui\DataProvider\Modifier\Pool">
+        <arguments>
+            <argument name="modifiers" xsi:type="array">
+                <item name="allowed_extensions" xsi:type="array">
+                    <item name="class" xsi:type="string">Opengento\Document\Ui\DataProvider\DocumentType\Form\Modifier\AllowedExtensions</item>
+                    <item name="sortOrder" xsi:type="number">10</item>
+                </item>
+                <item name="files" xsi:type="array">
+                    <item name="class" xsi:type="string">Opengento\Document\Ui\DataProvider\DocumentType\Form\Modifier\File</item>
+                    <item name="sortOrder" xsi:type="number">20</item>
+                </item>
+            </argument>
+        </arguments>
+    </virtualType>
+    <type name="Opengento\Document\Ui\DataProvider\DocumentType\Form\DataProvider">
+        <arguments>
+            <argument name="pool" xsi:type="object">Opengento\Document\Ui\DataProvider\DocumentType\Form\Modifier\Pool</argument>
+        </arguments>
+    </type>
+    <virtualType name="Opengento\Document\Ui\DataProvider\Document\Form\Modifier\Pool" type="Magento\Ui\DataProvider\Modifier\Pool">
+        <arguments>
+            <argument name="modifiers" xsi:type="array">
+                <item name="files" xsi:type="array">
+                    <item name="class" xsi:type="string">Opengento\Document\Ui\DataProvider\Document\Form\Modifier\File</item>
+                    <item name="sortOrder" xsi:type="number">10</item>
+                </item>
+            </argument>
+        </arguments>
+    </virtualType>
+    <type name="Opengento\Document\Ui\DataProvider\Document\Form\DataProvider">
+        <arguments>
+            <argument name="pool" xsi:type="object">Opengento\Document\Ui\DataProvider\Document\Form\Modifier\Pool</argument>
+        </arguments>
+    </type>
+</config>
