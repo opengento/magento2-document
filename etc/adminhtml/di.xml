@@ -14,6 +14,7 @@
                 <item name="entity_id" xsi:type="boolean">true</item>
                 <item name="code" xsi:type="boolean">true</item>
                 <item name="scheduled_import" xsi:type="boolean">true</item>
+                <item name="visibility" xsi:type="boolean">true</item>
                 <item name="name" xsi:type="boolean">true</item>
                 <item name="file_source_path" xsi:type="boolean">true</item>
                 <item name="file_dest_path" xsi:type="boolean">true</item>

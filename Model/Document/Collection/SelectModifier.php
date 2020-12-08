@@ -29,8 +29,8 @@ final class SelectModifier implements CollectionModifierInterface
             'file_locale',
         ]);
         $collection->join(
-            ['mdt' => 'opengento_document_type'],
-            'main_table.type_id=mdt.entity_id',
+            ['odt' => 'opengento_document_type'],
+            'main_table.type_id=odt.entity_id',
             [
                 'type_code' => 'code',
                 'type_name' => 'name',

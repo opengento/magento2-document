@@ -16,6 +16,7 @@
     <xs:complexType name="documentTypeComplex">
         <xs:sequence>
             <xs:element type="xs:boolean" name="scheduledImport"/>
+            <xs:element type="xs:string" name="visibility"/>
             <xs:element type="xs:string" name="name"/>
             <xs:element type="xs:string" name="fileSourcePath"/>
             <xs:element type="xs:string" name="fileDestPath"/>

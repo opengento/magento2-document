@@ -3,4 +3,4 @@ see how many available files for a type
 
 target blank or download
 
-visibility: Not visible, Visible in search
+visibility => what about serv conf

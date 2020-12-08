@@ -21,6 +21,8 @@ interface DocumentTypeInterface extends ExtensibleDataInterface
 
     public function getScheduledImport(): bool;
 
+    public function getVisibility(): string;
+
     public function getName(): string;
 
     public function getFileSourcePath(): string;

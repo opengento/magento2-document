@@ -51,6 +51,27 @@
             <argument name="entityRelationComposite" xsi:type="object">Opengento\Document\Model\ResourceModel\Document\RelationComposite</argument>
         </arguments>
     </type>
+    <!-- Search Criteria Filter -->
+    <virtualType name="Opengento\Document\Model\Document\SearchCriteria\CollectionProcessor\FilterProcessor" type="Magento\Framework\Api\SearchCriteria\CollectionProcessor\FilterProcessor">
+        <arguments>
+            <argument name="customFilters" xsi:type="array">
+                <item name="visibility" xsi:type="object">Opengento\Document\Model\Document\SearchCriteria\CollectionProcessor\VisibilityFilter</item>
+                <item name="defaultImage" xsi:type="object">Opengento\Document\Model\Document\SearchCriteria\CollectionProcessor\DefaultImageFilter</item>
+            </argument>
+        </arguments>
+    </virtualType>
+    <virtualType name="Opengento\Document\Document\SearchCriteria\CollectionProcessor" type="Magento\Framework\Api\SearchCriteria\CollectionProcessor">
+        <arguments>
+            <argument name="processors" xsi:type="array">
+                <item name="filters" xsi:type="object">Opengento\Document\Model\Document\SearchCriteria\CollectionProcessor\FilterProcessor</item>
+            </argument>
+        </arguments>
+    </virtualType>
+    <type name="Opengento\Document\Model\DocumentRepository">
+        <arguments>
+            <argument name="collectionProcessor" xsi:type="object">Opengento\Document\Document\SearchCriteria\CollectionProcessor</argument>
+        </arguments>
+    </type>
     <!-- Cache Settings -->
     <virtualType name="Opengento\Document\Model\ResourceModel\DocumentType\Collection\FetchStrategy" type="Magento\Framework\Data\Collection\Db\FetchStrategy\Cache">
         <arguments>
@@ -97,6 +118,20 @@
         <arguments>
             <argument name="processors" xsi:type="array">
                 <item name="simple" xsi:type="string">Opengento\Document\Model\Document\Processor\SimpleProcessor</item>
+            </argument>
+        </arguments>
+    </type>
+    <type name="Opengento\Document\Model\Config\Source\Visibility">
+        <arguments>
+            <argument name="options" xsi:type="array">
+                <item name="private" xsi:type="array">
+                    <item name="label" xsi:type="string" translatable="true">Private</item>
+                    <item name="value" xsi:type="const">Opengento\Document\Model\DocumentType\Visibility::VISIBILITY_PRIVATE</item>
+                </item>
+                <item name="public" xsi:type="array">
+                    <item name="label" xsi:type="string" translatable="true">Public</item>
+                    <item name="value" xsi:type="const">Opengento\Document\Model\DocumentType\Visibility::VISIBILITY_PUBLIC</item>
+                </item>
             </argument>
         </arguments>
     </type>

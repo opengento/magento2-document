@@ -132,7 +132,7 @@ final class ImageBuilder
         $destPath = File::IMAGE_CACHE_PATH . $this->imageId . DIRECTORY_SEPARATOR . implode(DIRECTORY_SEPARATOR, $path);
 
         $directoryRead = $this->filesystem->getDirectoryRead(DirectoryList::MEDIA);
-        if (!$directoryRead->isFile($destPath)) {
+        if ($directoryRead->isFile($filePath) && !$directoryRead->isFile($destPath)) {
             $this->createCacheImage(
                 $directoryRead->getAbsolutePath($filePath),
                 $directoryRead->getAbsolutePath($destPath),

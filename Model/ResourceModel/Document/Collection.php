@@ -23,13 +23,21 @@ class Collection extends AbstractCollection
         $this->_init(Document::class, DocumentDb::class);
     }
 
-    public function addDefaultImage(string $alias = 'default_image_file_name'): Collection
+    public function addDefaultImage(string $alias = 'default_image_file_name'): self
     {
         if ($this->_fieldsToSelect && in_array($alias, $this->_fieldsToSelect, true)) {
             $this->removeFieldFromSelect($alias);
         }
-        $this->join(['mdt' => 'opengento_document_type'], 'main_table.type_id=mdt.entity_id', '');
-        $this->getSelect()->columns([$alias => 'mdt.default_image_file_name']);
+        $this->join(['odt' => 'opengento_document_type'], 'main_table.type_id=odt.entity_id', '');
+        $this->getSelect()->columns([$alias => 'odt.default_image_file_name']);
+
+        return $this;
+    }
+
+    public function addVisibilityFilter(array $condition): self
+    {
+        $this->join(['odt' => 'opengento_document_type'], 'main_table.type_id=odt.entity_id', '');
+        $this->addFieldToFilter('odt.visibility', $condition);
 
         return $this;
     }

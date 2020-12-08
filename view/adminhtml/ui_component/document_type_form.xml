@@ -79,7 +79,26 @@
                 </select>
             </formElements>
         </field>
-        <input name="name" sortOrder="40">
+        <field name="visibility" formElement="select" sortOrder="40">
+            <settings>
+                <dataType>select</dataType>
+                <label translate="true">Visibility</label>
+                <notice>Please check the server access rules to the document type's paths when "Private" is enabled.</notice>
+                <validation>
+                    <rule name="required-entry" xsi:type="boolean">true</rule>
+                </validation>
+                <dataScope>visibility</dataScope>
+            </settings>
+            <formElements>
+                <select>
+                    <settings>
+                        <options class="Opengento\Document\Model\Config\Source\Visibility"/>
+                        <caption translate="true">-- Please Select --</caption>
+                    </settings>
+                </select>
+            </formElements>
+        </field>
+        <input name="name" sortOrder="50">
             <settings>
                 <dataType>text</dataType>
                 <label translate="true">Name</label>
@@ -90,7 +109,7 @@
                 <dataScope>name</dataScope>
             </settings>
         </input>
-        <input name="file_source_path" sortOrder="50">
+        <input name="file_source_path" sortOrder="60">
             <settings>
                 <dataType>text</dataType>
                 <label translate="true">Source Path</label>
@@ -102,7 +121,7 @@
                 <dataScope>file_source_path</dataScope>
             </settings>
         </input>
-        <input name="file_dest_path" sortOrder="60">
+        <input name="file_dest_path" sortOrder="70">
             <settings>
                 <dataType>text</dataType>
                 <label translate="true">Destination Path</label>
@@ -114,7 +133,7 @@
                 <dataScope>file_dest_path</dataScope>
             </settings>
         </input>
-        <input name="sub_path_length" sortOrder="70">
+        <input name="sub_path_length" sortOrder="80">
             <settings>
                 <dataType>text</dataType>
                 <label translate="true">Sub-path Length</label>
@@ -127,7 +146,7 @@
                 <dataScope>sub_path_length</dataScope>
             </settings>
         </input>
-        <input name="file_pattern" sortOrder="80">
+        <input name="file_pattern" sortOrder="90">
             <settings>
                 <dataType>text</dataType>
                 <label translate="true">File Pattern</label>
@@ -139,7 +158,7 @@
                 <dataScope>file_pattern</dataScope>
             </settings>
         </input>
-        <dynamicRows name="file_allowed_extensions" sortOrder="90">
+        <dynamicRows name="file_allowed_extensions" sortOrder="100">
             <settings>
                 <label translate="true">File Allowed Extensions</label>
                 <addButton>true</addButton>
@@ -172,7 +191,7 @@
                 <actionDelete/>
             </container>
         </dynamicRows>
-        <fileUploader name="image_uploader" template="ui/form/element/uploader/uploader" sortOrder="100">
+        <fileUploader name="image_uploader" template="ui/form/element/uploader/uploader" sortOrder="110">
             <settings>
                 <label translate="true">Default Image File</label>
                 <notice translate="true">We will use the default image when type's documents does not have one.</notice>

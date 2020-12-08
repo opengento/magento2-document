@@ -46,6 +46,11 @@ class DocumentType extends AbstractExtensibleModel implements DocumentTypeInterf
         return (bool) $this->_getData('scheduled_import');
     }
 
+    public function getVisibility(): string
+    {
+        return (string) $this->_getData('visibility');
+    }
+
     public function getName(): string
     {
         return (string) $this->_getData('name');

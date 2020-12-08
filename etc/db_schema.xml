@@ -10,6 +10,7 @@
         <column xsi:type="int" name="entity_id" padding="10" unsigned="true" nullable="false" identity="true" comment="Document Type Entity ID"/>
         <column xsi:type="varchar" name="code" nullable="false" length="255" comment="Document Type Identifier"/>
         <column xsi:type="boolean" name="scheduled_import" nullable="false" comment="Document Type Schedule Import"/>
+        <column xsi:type="varchar" name="visibility" nullable="false" length="255" comment="Document Type Visibility"/>
         <column xsi:type="text" name="name" nullable="false" comment="Document Type Title"/>
         <column xsi:type="text" name="file_source_path" nullable="false" comment="Files Source Path of the Document Type"/>
         <column xsi:type="text" name="file_dest_path" nullable="false" comment="Files Destination Path of the Document Type"/>
@@ -27,6 +28,9 @@
         </constraint>
         <index referenceId="OPENGENTO_DOCUMENT_TYPE_SCHEDULED_IMPORT" indexType="btree">
             <column name="scheduled_import"/>
+        </index>
+        <index referenceId="OPENGENTO_DOCUMENT_TYPE_VISIBILITY" indexType="btree">
+            <column name="visibility"/>
         </index>
     </table>
     <table name="opengento_document" resource="default" engine="innodb" comment="opengento_document">

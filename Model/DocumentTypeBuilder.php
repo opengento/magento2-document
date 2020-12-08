@@ -55,6 +55,13 @@ final class DocumentTypeBuilder implements SimpleBuilderInterface
         return $this;
     }
 
+    public function setVisibility(string $visibility): self
+    {
+        $this->data['visibility'] = $visibility;
+
+        return $this;
+    }
+
     public function setName(string $name): self
     {
         $this->data['name'] = $name;
