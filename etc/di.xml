@@ -209,7 +209,7 @@
             <argument name="nodeConverters" xsi:type="array">
                 <item name="default" xsi:type="object">Opengento\Document\Model\Config\DocumentType\Converter\NodeConverter</item>
                 <item name="scheduledImport" xsi:type="object">Opengento\Document\Model\Config\DocumentType\Converter\ScheduledImportConverter</item>
-                <item name="fileAllowedExtensionsComplex" xsi:type="object">Opengento\Document\Model\Config\DocumentType\Converter\FileAllowedExtensionsConverter</item>
+                <item name="fileAllowedExtensions" xsi:type="object">Opengento\Document\Model\Config\DocumentType\Converter\FileAllowedExtensionsConverter</item>
             </argument>
         </arguments>
     </type>
@@ -226,7 +226,7 @@
             <argument name="schemaLocator" xsi:type="object">Opengento\Document\Config\DocumentType\SchemaLocator</argument>
             <argument name="fileName" xsi:type="string">resource_document_types.xml</argument>
             <argument name="idAttributes" xsi:type="array">
-                <item name="config/documentType" xsi:type="string">code</item>
+                <item name="/config/documentType" xsi:type="string">code</item>
             </argument>
         </arguments>
     </virtualType>

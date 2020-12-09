@@ -8,6 +8,7 @@ declare(strict_types=1);
 namespace Opengento\Document\Model\Config\DocumentType\Converter;
 
 use DOMNode;
+use function array_filter;
 use function implode;
 use function trim;
 
@@ -21,6 +22,6 @@ final class FileAllowedExtensionsConverter implements NodeConverterInterface
             $allowedExtensions[] = trim($childNode->nodeValue);
         }
 
-        return implode(',', $allowedExtensions);
+        return implode(',', array_filter($allowedExtensions));
     }
 }
