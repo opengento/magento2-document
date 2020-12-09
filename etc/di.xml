@@ -208,6 +208,7 @@
         <arguments>
             <argument name="nodeConverters" xsi:type="array">
                 <item name="default" xsi:type="object">Opengento\Document\Model\Config\DocumentType\Converter\NodeConverter</item>
+                <item name="scheduledImport" xsi:type="object">Opengento\Document\Model\Config\DocumentType\Converter\ScheduledImportConverter</item>
                 <item name="fileAllowedExtensionsComplex" xsi:type="object">Opengento\Document\Model\Config\DocumentType\Converter\FileAllowedExtensionsConverter</item>
             </argument>
         </arguments>

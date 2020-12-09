@@ -33,13 +33,15 @@ final class Converter implements ConverterInterface
         }
 
         $documentTypes = [];
+        $defaultConverter = $this->nodeConverters['default'];
 
         /** @var DOMElement $documentType */
         foreach ($source->getElementsByTagName('documentType') as $documentType) {
             $data = [];
             /** @var DOMNode $node */
             foreach ($documentType->childNodes as $node) {
-                $data[SimpleDataObjectConverter::camelCaseToSnakeCase($node->nodeName)] = $this->convertNode($node);
+                $converter = $this->nodeConverters[$node->nodeName] ?? $defaultConverter;
+                $data[SimpleDataObjectConverter::camelCaseToSnakeCase($node->nodeName)] = $converter->convert($node);
             }
 
             $data['code'] = $documentType->getAttribute('code');
@@ -47,10 +49,5 @@ final class Converter implements ConverterInterface
         }
 
         return $documentTypes;
-    }
-
-    private function convertNode(DOMNode $node): string
-    {
-        return ($this->nodeConverters[$node->nodeName] ?? $this->nodeConverters['default'])->convert($node);
     }
 }

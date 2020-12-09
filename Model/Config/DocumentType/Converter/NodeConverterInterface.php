@@ -11,5 +11,5 @@ use DOMNode;
 
 interface NodeConverterInterface
 {
-    public function convert(DOMNode $node): string;
+    public function convert(DOMNode $node);
 }

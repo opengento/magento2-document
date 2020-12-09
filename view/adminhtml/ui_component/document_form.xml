@@ -75,6 +75,7 @@
                 <visible>true</visible>
                 <validation>
                     <rule name="required-entry" xsi:type="boolean">true</rule>
+                    <rule name="validate-identifier" xsi:type="boolean">true</rule>
                 </validation>
                 <dataScope>code</dataScope>
             </settings>
