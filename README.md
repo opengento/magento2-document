@@ -5,7 +5,7 @@
 [![Packagist](https://img.shields.io/packagist/dt/opengento/module-document.svg?style=flat-square)](https://packagist.org/packages/opengento/module-document/stats)
 [![Packagist](https://img.shields.io/packagist/dm/opengento/module-document.svg?style=flat-square)](https://packagist.org/packages/opengento/module-document/stats)
 
-This module add the many countries to many stores relation and make it available to the storefront.
+This module aims to help merchants to manage easily their documents in Magento 2.
 
  - [Setup](#setup)
    - [Composer installation](#composer-installation)

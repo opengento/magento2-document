@@ -1,25 +1,60 @@
 {
     "name": "opengento/module-document",
-    "version": "1.0.0",
-    "description": "N/A",
+    "description": "This module aims to help merchants to manage easily their documents in Magento 2.",
+    "keywords": [
+        "php",
+        "magento",
+        "magento2",
+        "module",
+        "extension",
+        "document",
+        "resources",
+        "tool",
+        "import"
+    ],
     "type": "magento2-module",
     "require": {
         "ext-dom": "*",
-        "magento/framework": "*",
-        "magento/module-backend": "*",
-        "magento/module-cache-invalidate": "*",
-        "magento/module-config": "*",
-        "magento/module-page-cache": "*",
-        "magento/module-ui": "*"
+        "magento/framework": "^103.0",
+        "magento/module-backend": "^102.0",
+        "magento/module-cache-invalidate": "^104.0",
+        "magento/module-config": "^101.0",
+        "magento/module-page-cache": "^100.0",
+        "magento/module-ui": "^101.0"
     },
     "require-dev": {
         "magento/magento-coding-standard": "^5",
         "magento/marketplace-eqp": "^4.0",
         "roave/security-advisories": "dev-master"
     },
+    "suggest": {
+        "opengento/module-document-product-link": "",
+        "opengento/module-document-product-search": "",
+        "opengento/module-document-search": "",
+        "opengento/module-document-widget": ""
+    },
     "license": [
         "MIT"
     ],
+    "homepage": "https://github.com/opengento/magento2-document",
+    "authors": [
+        {
+            "name": "Opengento Team",
+            "email": "opengento@gmail.com",
+            "homepage": "https://opengento.fr/",
+            "role": "lead"
+        },
+        {
+            "name": "Thomas Klein",
+            "email": "thomaskein876@gmail.com",
+            "homepage": "https://www.linkedin.com/in/thomas-klein/",
+            "role": "maintainer"
+        }
+    ],
+    "support": {
+        "source": "https://github.com/opengento/magento2-document",
+        "issues": "https://github.com/opengento/magento2-document/issues"
+    },
     "autoload": {
         "files": [
             "registration.php"
