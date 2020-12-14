@@ -50,19 +50,30 @@
                 <dataScope>entity_id</dataScope>
             </settings>
         </hidden>
-        <input name="code" sortOrder="20">
+        <input name="name" sortOrder="20">
+            <settings>
+                <dataType>text</dataType>
+                <label translate="true">Name</label>
+                <visible>true</visible>
+                <validation>
+                    <rule name="required-entry" xsi:type="boolean">true</rule>
+                </validation>
+                <dataScope>name</dataScope>
+            </settings>
+        </input>
+        <input name="code" sortOrder="30">
             <settings>
                 <dataType>text</dataType>
                 <label translate="true">Code</label>
                 <visible>true</visible>
                 <validation>
                     <rule name="required-entry" xsi:type="boolean">true</rule>
-                    <rule name="validate-identifier" xsi:type="boolean">true</rule>
+                    <rule name="validate-code" xsi:type="boolean">true</rule>
                 </validation>
                 <dataScope>code</dataScope>
             </settings>
         </input>
-        <field name="scheduled_import" formElement="select" sortOrder="30">
+        <field name="scheduled_import" formElement="select" sortOrder="40">
             <settings>
                 <dataType>select</dataType>
                 <label translate="true">Scheduled Import</label>
@@ -80,7 +91,7 @@
                 </select>
             </formElements>
         </field>
-        <field name="visibility" formElement="select" sortOrder="40">
+        <field name="visibility" formElement="select" sortOrder="50">
             <settings>
                 <dataType>select</dataType>
                 <label translate="true">Visibility</label>
@@ -99,17 +110,6 @@
                 </select>
             </formElements>
         </field>
-        <input name="name" sortOrder="50">
-            <settings>
-                <dataType>text</dataType>
-                <label translate="true">Name</label>
-                <visible>true</visible>
-                <validation>
-                    <rule name="required-entry" xsi:type="boolean">true</rule>
-                </validation>
-                <dataScope>name</dataScope>
-            </settings>
-        </input>
         <input name="file_source_path" sortOrder="60">
             <settings>
                 <dataType>text</dataType>

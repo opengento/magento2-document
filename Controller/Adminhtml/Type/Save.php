@@ -68,7 +68,7 @@ class Save extends Action implements HttpPostActionInterface
         try {
             $entityId = $this->saveHandler->execute($this->getRequest(), $this->resolveDocumentType())->getId();
             $this->dataPersistor->clear('document_type_post_data');
-            $this->messageManager->addSuccessMessage('The document type has been successfully saved.');
+            $this->messageManager->addSuccessMessage(new Phrase('The document type has been successfully saved.'));
         } catch (CouldNotSaveException $e) {
             $this->messageManager->addErrorMessage($e->getPrevious()->getMessage());
         } catch (LocalizedException $e) {
@@ -81,7 +81,7 @@ class Save extends Action implements HttpPostActionInterface
         $resultRedirect = $this->resultRedirectFactory->create();
         $resultRedirect->setPath('*/*/');
 
-        if ($this->getRequest()->getParam('back')) {
+        if ($this->dataPersistor->get('document_type_post_data') || $this->getRequest()->getParam('back')) {
             $resultRedirect->setPath('*/*/edit', ['id' => $entityId]);
         }
 

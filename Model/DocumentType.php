@@ -28,7 +28,7 @@ class DocumentType extends AbstractExtensibleModel implements DocumentTypeInterf
 
     public function getIdentities(): array
     {
-        return [self::CACHE_TAG . '_' . $this->getId()];
+        return [self::CACHE_TAG . '_' . $this->getId(), self::CACHE_TAG . '_' . $this->getCode()];
     }
 
     public function getId(): ?int

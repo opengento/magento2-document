@@ -29,6 +29,7 @@ class Document extends AbstractExtensibleModel implements DocumentInterface, Ide
     {
         return [
             self::CACHE_TAG . '_' . $this->getId(),
+            self::CACHE_TAG . '_' . $this->getCode(),
             DocumentType::CACHE_TAG . '_' . $this->getTypeId(),
         ];
     }

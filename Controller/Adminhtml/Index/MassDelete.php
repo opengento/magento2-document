@@ -64,7 +64,7 @@ class MassDelete extends Action implements HttpPostActionInterface
         } catch (LocalizedException $e) {
             $this->messageManager->addErrorMessage($e->getMessage());
         } catch (Exception $e) {
-            $this->messageManager->addExceptionMessage($e, $e->getMessage());
+            $this->messageManager->addExceptionMessage($e, new Phrase('An error occurred on the server.'));
         }
 
         return $resultRedirect;

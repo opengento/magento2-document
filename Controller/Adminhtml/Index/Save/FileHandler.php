@@ -94,7 +94,10 @@ final class FileHandler implements HandlerInterface
         $data = [];
         $fileUploader = $request->getParam('file_uploader');
 
-        if (isset($fileUploader[0]['path'], $fileUploader[0]['file'])) {
+        if (!$fileUploader) {
+            $data['file_name'] = null;
+            $data['file_path'] = null;
+        } elseif (isset($fileUploader[0]['path'], $fileUploader[0]['file'])) {
             $fileSrcPath = $fileUploader[0]['path'] . $fileUploader[0]['file'];
 
             $this->validator->validate($fileSrcPath, $documentType->getFileAllowedExtensions());
@@ -120,7 +123,9 @@ final class FileHandler implements HandlerInterface
         $data = [];
         $imageUploader = $request->getParam('image_uploader');
 
-        if (isset($imageUploader[0]['path'], $imageUploader[0]['file'])) {
+        if (!$imageUploader) {
+            $data['image_file_name'] = null;
+        } elseif (isset($imageUploader[0]['path'], $imageUploader[0]['file'])) {
             $imageSrcPath = $imageUploader[0]['path'] . $imageUploader[0]['file'];
 
             $destImagePath = $this->fileHelper->getImageDestPath($documentType, $imageSrcPath);

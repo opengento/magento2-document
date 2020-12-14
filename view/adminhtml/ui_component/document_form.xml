@@ -68,19 +68,7 @@
                 </select>
             </formElements>
         </field>
-        <input name="code" sortOrder="30">
-            <settings>
-                <dataType>text</dataType>
-                <label translate="true">Code</label>
-                <visible>true</visible>
-                <validation>
-                    <rule name="required-entry" xsi:type="boolean">true</rule>
-                    <rule name="validate-identifier" xsi:type="boolean">true</rule>
-                </validation>
-                <dataScope>code</dataScope>
-            </settings>
-        </input>
-        <input name="name" sortOrder="40">
+        <input name="name" sortOrder="30">
             <settings>
                 <dataType>text</dataType>
                 <label translate="true">Name</label>
@@ -89,6 +77,18 @@
                     <rule name="required-entry" xsi:type="boolean">true</rule>
                 </validation>
                 <dataScope>name</dataScope>
+            </settings>
+        </input>
+        <input name="code" sortOrder="40">
+            <settings>
+                <dataType>text</dataType>
+                <label translate="true">Code</label>
+                <visible>true</visible>
+                <validation>
+                    <rule name="required-entry" xsi:type="boolean">true</rule>
+                    <rule name="validate-code" xsi:type="boolean">true</rule>
+                </validation>
+                <dataScope>code</dataScope>
             </settings>
         </input>
         <textarea name="description" sortOrder="50">

@@ -43,12 +43,16 @@ final class FileHandler implements HandlerInterface
         $this->rollbackData = [];
         $imageUploader = $request->getParam('image_uploader');
 
-        if (isset($imageUploader[0]['path'], $imageUploader[0]['file'])) {
+        if (!$imageUploader) {
+            $data['default_image_file_name'] = null;
+        } elseif (isset($imageUploader[0]['path'], $imageUploader[0]['file'])) {
             $imageSrcPath = $imageUploader[0]['path'] . $imageUploader[0]['file'];
             $destImagePath = $this->fileHelper->getImageDestPath($documentType, $imageSrcPath);
             $this->rollbackData['destImagePath'] = $destImagePath;
             $this->fileHelper->moveFile($imageSrcPath, $destImagePath);
             $data['default_image_file_name'] = $this->fileHelper->getRelativeFilePath($destImagePath);
+        }
+        if ($data) {
             $documentType = $this->hydratorPool->getHydrator(DocumentTypeInterface::class)->hydrate($documentType, $data);
         }
 
