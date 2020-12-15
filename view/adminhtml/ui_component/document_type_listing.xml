@@ -89,7 +89,7 @@
         </selectionsColumn>
         <column name="entity_id" sortOrder="20">
             <settings>
-                <label translate="true">Document ID</label>
+                <label translate="true">Type ID</label>
                 <filter>textRange</filter>
                 <sorting>asc</sorting>
             </settings>
@@ -100,7 +100,13 @@
                 <filter>text</filter>
             </settings>
         </column>
-        <column name="scheduled_import" component="Magento_Ui/js/grid/columns/select" sortOrder="40">
+        <column name="name" sortOrder="40">
+            <settings>
+                <label translate="true">Name</label>
+                <filter>text</filter>
+            </settings>
+        </column>
+        <column name="scheduled_import" component="Magento_Ui/js/grid/columns/select" sortOrder="50">
             <settings>
                 <dataType>select</dataType>
                 <label translate="true">Scheduled Import</label>
@@ -109,7 +115,7 @@
                 <visible>false</visible>
             </settings>
         </column>
-        <column name="visibility" component="Magento_Ui/js/grid/columns/select" sortOrder="40">
+        <column name="visibility" component="Magento_Ui/js/grid/columns/select" sortOrder="60">
             <settings>
                 <dataType>select</dataType>
                 <label translate="true">Visibility</label>
@@ -117,34 +123,35 @@
                 <options class="Opengento\Document\Model\Config\Source\Visibility"/>
             </settings>
         </column>
-        <column name="name" sortOrder="50">
-            <settings>
-                <label translate="true">Name</label>
-                <filter>text</filter>
-            </settings>
-        </column>
-        <column name="file_source_path" sortOrder="60">
+        <column name="file_source_path" sortOrder="70">
             <settings>
                 <label translate="true">File Source Path</label>
                 <filter>text</filter>
                 <visible>false</visible>
             </settings>
         </column>
-        <column name="file_dest_path" sortOrder="70">
+        <column name="file_dest_path" sortOrder="80">
             <settings>
                 <label translate="true">File Destination Path</label>
                 <filter>text</filter>
                 <visible>false</visible>
             </settings>
         </column>
-        <column name="file_pattern" sortOrder="80">
+        <column name="file_pattern" sortOrder="90">
             <settings>
                 <label translate="true">File Pattern</label>
                 <filter>text</filter>
                 <visible>false</visible>
             </settings>
         </column>
-        <column name="default_image_file_name" class="Opengento\Document\Ui\Component\Listing\Column\Thumbnail" component="Magento_Ui/js/grid/columns/thumbnail" sortOrder="90">
+        <column name="file_allowed_extensions" sortOrder="100">
+            <settings>
+                <label translate="true">File Allowed Extensions</label>
+                <filter>text</filter>
+                <visible>false</visible>
+            </settings>
+        </column>
+        <column name="default_image_file_name" class="Opengento\Document\Ui\Component\Listing\Column\Thumbnail" component="Magento_Ui/js/grid/columns/thumbnail" sortOrder="110">
             <argument name="data" xsi:type="array">
                 <item name="config" xsi:type="array">
                     <item name="editUrlPath" xsi:type="string">document/type/edit</item>
@@ -161,21 +168,21 @@
                 <sortable>false</sortable>
             </settings>
         </column>
-        <column name="created_at" class="Magento\Ui\Component\Listing\Columns\Date" component="Magento_Ui/js/grid/columns/date" sortOrder="100">
+        <column name="created_at" class="Magento\Ui\Component\Listing\Columns\Date" component="Magento_Ui/js/grid/columns/date" sortOrder="120">
             <settings>
                 <filter>dateRange</filter>
                 <dataType>date</dataType>
                 <label translate="true">Created At</label>
             </settings>
         </column>
-        <column name="updated_at" class="Magento\Ui\Component\Listing\Columns\Date" component="Magento_Ui/js/grid/columns/date" sortOrder="110">
+        <column name="updated_at" class="Magento\Ui\Component\Listing\Columns\Date" component="Magento_Ui/js/grid/columns/date" sortOrder="130">
             <settings>
                 <filter>dateRange</filter>
                 <dataType>date</dataType>
                 <label translate="true">Updated At</label>
             </settings>
         </column>
-        <actionsColumn name="actions" class="Opengento\Document\Ui\Component\Listing\Column\Actions" sortOrder="120">
+        <actionsColumn name="actions" class="Opengento\Document\Ui\Component\Listing\Column\Actions" sortOrder="140">
             <argument name="data" xsi:type="array">
                 <item name="config" xsi:type="array">
                     <item name="editUrlPath" xsi:type="string">document/type/edit</item>

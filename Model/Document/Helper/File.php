@@ -26,7 +26,6 @@ use function preg_replace;
 use function strtolower;
 use function trim;
 use const DIRECTORY_SEPARATOR;
-use const GLOB_BRACE;
 use const PATHINFO_FILENAME;
 
 /**
@@ -99,7 +98,7 @@ final class File
 
         return Glob::glob(
             $sourcePath . DIRECTORY_SEPARATOR . ltrim($documentType->getFilePattern(), DIRECTORY_SEPARATOR),
-            $flags | GLOB_BRACE
+            $flags + Glob::GLOB_BRACE
         );
     }
 

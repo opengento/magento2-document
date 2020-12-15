@@ -11,16 +11,19 @@
             <resource id="Magento_Backend::admin">
                 <resource id="Opengento_Document::general" title="Module Document General" translate="title" sortOrder="10">
                     <resource id="Opengento_Document::settings" title="Document Settings" translate="title" sortOrder="10"/>
-                    <resource id="Opengento_Document::flush_images" title="Document Images" translate="title" sortOrder="10"/>
-                    <resource id="Opengento_Document::document_type" title="Document Type" translate="title" sortOrder="20">
-                        <resource id="Opengento_Document::document_type_save" title="save" translate="title" sortOrder="10"/>
-                        <resource id="Opengento_Document::document_type_delete" title="delete" translate="title" sortOrder="20"/>
-                        <resource id="Opengento_Document::document_type_view" title="view" translate="title" sortOrder="30"/>
+                    <resource id="Opengento_Document::flush_images" title="Document Images" translate="title" sortOrder="20"/>
+                    <resource id="Opengento_Document::document_import" title="Documents Import" translate="title" sortOrder="30">
+                        <resource id="Opengento_Document::document_import_view" title="View" translate="title" sortOrder="10"/>
                     </resource>
-                    <resource id="Opengento_Document::document" title="Document" translate="title" sortOrder="30">
-                        <resource id="Opengento_Document::document_save" title="save" translate="title" sortOrder="10"/>
-                        <resource id="Opengento_Document::document_delete" title="delete" translate="title" sortOrder="20"/>
-                        <resource id="Opengento_Document::document_view" title="view" translate="title" sortOrder="30"/>
+                    <resource id="Opengento_Document::document_type" title="Document Type" translate="title" sortOrder="40">
+                        <resource id="Opengento_Document::document_type_save" title="Save" translate="title" sortOrder="10"/>
+                        <resource id="Opengento_Document::document_type_delete" title="Delete" translate="title" sortOrder="20"/>
+                        <resource id="Opengento_Document::document_type_view" title="View" translate="title" sortOrder="30"/>
+                    </resource>
+                    <resource id="Opengento_Document::document" title="Document" translate="title" sortOrder="50">
+                        <resource id="Opengento_Document::document_save" title="Save" translate="title" sortOrder="10"/>
+                        <resource id="Opengento_Document::document_delete" title="Delete" translate="title" sortOrder="20"/>
+                        <resource id="Opengento_Document::document_view" title="View" translate="title" sortOrder="30"/>
                     </resource>
                 </resource>
             </resource>

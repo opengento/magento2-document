@@ -78,6 +78,25 @@
         </arguments>
     </type>
     <!-- Search Criteria Filter -->
+    <virtualType name="Opengento\Document\Model\DocumentType\SearchCriteria\CollectionProcessor\FilterProcessor" type="Magento\Framework\Api\SearchCriteria\CollectionProcessor\FilterProcessor">
+        <arguments>
+            <argument name="customFilters" xsi:type="array">
+                <item name="filesCount" xsi:type="object">Opengento\Document\Model\DocumentType\SearchCriteria\CollectionProcessor\FilesCountFilter</item>
+            </argument>
+        </arguments>
+    </virtualType>
+    <virtualType name="Opengento\Document\DocumentType\SearchCriteria\CollectionProcessor" type="Magento\Framework\Api\SearchCriteria\CollectionProcessor">
+        <arguments>
+            <argument name="processors" xsi:type="array">
+                <item name="filters" xsi:type="object">Opengento\Document\Model\DocumentType\SearchCriteria\CollectionProcessor\FilterProcessor</item>
+            </argument>
+        </arguments>
+    </virtualType>
+    <type name="Opengento\Document\Model\DocumentTypeRepository">
+        <arguments>
+            <argument name="collectionProcessor" xsi:type="object">Opengento\Document\DocumentType\SearchCriteria\CollectionProcessor</argument>
+        </arguments>
+    </type>
     <virtualType name="Opengento\Document\Model\Document\SearchCriteria\CollectionProcessor\FilterProcessor" type="Magento\Framework\Api\SearchCriteria\CollectionProcessor\FilterProcessor">
         <arguments>
             <argument name="customFilters" xsi:type="array">
@@ -273,23 +292,23 @@
         </arguments>
     </type>
     <!-- UI Components -->
-    <virtualType name="Opengento\Document\Ui\Component\DataProvider\Document\Collection" type="Magento\Framework\View\Element\UiComponent\DataProvider\SearchResult">
-        <arguments>
-            <argument name="mainTable" xsi:type="string">opengento_document</argument>
-            <argument name="resourceModel" xsi:type="string">Opengento\Document\Model\ResourceModel\Document</argument>
-        </arguments>
-    </virtualType>
     <virtualType name="Opengento\Document\Ui\Component\DataProvider\DocumentType\Collection" type="Magento\Framework\View\Element\UiComponent\DataProvider\SearchResult">
         <arguments>
             <argument name="mainTable" xsi:type="string">opengento_document_type</argument>
             <argument name="resourceModel" xsi:type="string">Opengento\Document\Model\ResourceModel\DocumentType</argument>
         </arguments>
     </virtualType>
+    <virtualType name="Opengento\Document\Ui\Component\DataProvider\Document\Collection" type="Magento\Framework\View\Element\UiComponent\DataProvider\SearchResult">
+        <arguments>
+            <argument name="mainTable" xsi:type="string">opengento_document</argument>
+            <argument name="resourceModel" xsi:type="string">Opengento\Document\Model\ResourceModel\Document</argument>
+        </arguments>
+    </virtualType>
     <type name="Magento\Framework\View\Element\UiComponent\DataProvider\CollectionFactory">
         <arguments>
             <argument name="collections" xsi:type="array">
-                <item name="document_listing_data_source" xsi:type="string">Opengento\Document\Ui\Component\DataProvider\Document\Collection</item>
                 <item name="document_type_listing_data_source" xsi:type="string">Opengento\Document\Ui\Component\DataProvider\DocumentType\Collection</item>
+                <item name="document_listing_data_source" xsi:type="string">Opengento\Document\Ui\Component\DataProvider\Document\Collection</item>
             </argument>
         </arguments>
     </type>
@@ -325,6 +344,21 @@
     <type name="Opengento\Document\Ui\DataProvider\Document\Form\DataProvider">
         <arguments>
             <argument name="pool" xsi:type="object">Opengento\Document\Ui\DataProvider\Document\Form\Modifier\Pool</argument>
+        </arguments>
+    </type>
+    <virtualType name="Opengento\Document\Ui\DataProvider\DocumentImport\Listing\Modifier\Pool" type="Magento\Ui\DataProvider\Modifier\Pool">
+        <arguments>
+            <argument name="modifiers" xsi:type="array">
+                <item name="files" xsi:type="array">
+                    <item name="class" xsi:type="string">Opengento\Document\Ui\DataProvider\DocumentImport\Listing\Modifier\PendingFiles</item>
+                    <item name="sortOrder" xsi:type="number">10</item>
+                </item>
+            </argument>
+        </arguments>
+    </virtualType>
+    <type name="Opengento\Document\Ui\DataProvider\DocumentImport\Listing\DataProvider">
+        <arguments>
+            <argument name="pool" xsi:type="object">Opengento\Document\Ui\DataProvider\DocumentImport\Listing\Modifier\Pool</argument>
         </arguments>
     </type>
 </config>

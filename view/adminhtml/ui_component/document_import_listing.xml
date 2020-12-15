@@ -1,0 +1,130 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © OpenGento, All rights reserved.
+ * See LICENSE bundled with this library for license details.
+ */
+-->
+<listing xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Ui:etc/ui_configuration.xsd">
+    <argument name="data" xsi:type="array">
+        <item name="js_config" xsi:type="array">
+            <item name="provider" xsi:type="string">document_import_listing.document_import_listing_data_source</item>
+        </item>
+    </argument>
+    <settings>
+        <spinner>document_import_listing_columns</spinner>
+        <deps>
+            <dep>document_import_listing.document_import_listing_data_source</dep>
+        </deps>
+    </settings>
+    <dataSource name="document_import_listing_data_source">
+        <argument name="data" xsi:type="array">
+            <item name="js_config" xsi:type="array">
+                <item name="component" xsi:type="string">Magento_Ui/js/grid/provider</item>
+            </item>
+        </argument>
+        <settings>
+            <updateUrl path="mui/index/render"/>
+            <storageConfig>
+                <param name="indexField" xsi:type="string">entity_id</param>
+            </storageConfig>
+        </settings>
+        <dataProvider name="document_import_listing_data_source" class="Opengento\Document\Ui\DataProvider\DocumentImport\Listing\DataProvider">
+            <settings>
+                <primaryFieldName>entity_id</primaryFieldName>
+                <requestFieldName>id</requestFieldName>
+            </settings>
+        </dataProvider>
+    </dataSource>
+    <listingToolbar name="listing_top">
+        <settings>
+            <sticky>true</sticky>
+        </settings>
+        <bookmark name="bookmarks"/>
+        <columnsControls name="columns_controls"/>
+        <filters name="listing_filters">
+            <argument name="data" xsi:type="array">
+                <item name="observers" xsi:type="array">
+                    <item name="column" xsi:type="string">column</item>
+                </item>
+            </argument>
+            <settings>
+                <templates>
+                    <filters>
+                        <select>
+                            <param name="template" xsi:type="string">ui/grid/filters/elements/ui-select</param>
+                            <param name="component" xsi:type="string">Magento_Ui/js/form/element/ui-select</param>
+                        </select>
+                    </filters>
+                </templates>
+            </settings>
+        </filters>
+        <paging name="listing_paging"/>
+    </listingToolbar>
+    <columns name="document_import_listing_columns">
+        <column name="entity_id" sortOrder="20">
+            <settings>
+                <label translate="true">Document ID</label>
+                <filter>textRange</filter>
+                <sorting>asc</sorting>
+            </settings>
+        </column>
+        <column name="code" sortOrder="30">
+            <settings>
+                <label translate="true">Code</label>
+                <filter>text</filter>
+            </settings>
+        </column>
+        <column name="name" sortOrder="40">
+            <settings>
+                <label translate="true">Name</label>
+                <filter>text</filter>
+            </settings>
+        </column>
+        <column name="scheduled_import" component="Magento_Ui/js/grid/columns/select" sortOrder="50">
+            <settings>
+                <dataType>select</dataType>
+                <label translate="true">Scheduled Import</label>
+                <filter>select</filter>
+                <options class="Magento\Config\Model\Config\Source\Enabledisable"/>
+            </settings>
+        </column>
+        <column name="file_source_path" sortOrder="60">
+            <settings>
+                <label translate="true">File Source Path</label>
+                <filter>text</filter>
+            </settings>
+        </column>
+        <column name="file_dest_path" sortOrder="70">
+            <settings>
+                <label translate="true">File Destination Path</label>
+                <filter>text</filter>
+            </settings>
+        </column>
+        <column name="file_pattern" sortOrder="80">
+            <settings>
+                <label translate="true">File Pattern</label>
+                <filter>text</filter>
+            </settings>
+        </column>
+        <column name="file_allowed_extensions" sortOrder="90">
+            <settings>
+                <label translate="true">File Allowed Extensions</label>
+                <filter>text</filter>
+            </settings>
+        </column>
+        <column name="total_files" sortOrder="10">
+            <settings>
+                <label translate="true">Total Files</label>
+                <filter>textRange</filter>
+                <addField>true</addField>
+            </settings>
+        </column>
+        <column name="total_pending" sortOrder="110">
+            <settings>
+                <label translate="true">Total Pending</label>
+                <sortable>false</sortable>
+            </settings>
+        </column>
+    </columns>
+</listing>

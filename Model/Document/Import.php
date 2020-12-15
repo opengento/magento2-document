@@ -8,6 +8,7 @@ declare(strict_types=1);
 namespace Opengento\Document\Model\Document;
 
 use Exception;
+use Magento\Framework\Filesystem\Glob;
 use Magento\Framework\Phrase;
 use Opengento\Document\Api\Data\DocumentInterface;
 use Opengento\Document\Api\Data\DocumentTypeInterface;
@@ -16,7 +17,6 @@ use Opengento\Document\Model\Document\Import\StatusUpdaterInterface;
 use Opengento\Document\Model\Document\Operation\CreateFromFileInterface;
 use Psr\Log\LoggerInterface;
 use function count;
-use const GLOB_NOSORT;
 
 final class Import implements ImportInterface
 {
@@ -62,7 +62,7 @@ final class Import implements ImportInterface
     public function execute(DocumentTypeInterface $documentType): ImportResultsInterface
     {
         $results = ['errors' => [], 'success' => []];
-        $files = $this->fileHelper->lookupFiles($documentType, GLOB_NOSORT);
+        $files = $this->fileHelper->lookupFiles($documentType, Glob::GLOB_NOSORT);
 
         $this->updateStatusStart(count($files));
 

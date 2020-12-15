@@ -41,4 +41,9 @@ class Collection extends AbstractCollection
 
         return $this;
     }
+
+    public function toOptionArray(): array
+    {
+        return $this->_toOptionArray('entity_id');
+    }
 }

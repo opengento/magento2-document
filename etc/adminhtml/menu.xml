@@ -10,5 +10,6 @@
         <add id="Opengento_Document::general" title="Resources" module="Opengento_Document" sortOrder="100" parent="Magento_Backend::content" resource="Opengento_Document::general"/>
         <add id="Opengento_Document::document_type" title="Documents Types" module="Opengento_Document" sortOrder="10" parent="Opengento_Document::general" action="document/type/" resource="Opengento_Document::document_type"/>
         <add id="Opengento_Document::document" title="Documents" module="Opengento_Document" sortOrder="20" parent="Opengento_Document::general" action="document/index/" resource="Opengento_Document::document"/>
+        <add id="Opengento_Document::document_import" title="Document Imports" module="Opengento_Document" sortOrder="30" parent="Opengento_Document::general" action="document/import/" resource="Opengento_Document::document_import"/>
     </menu>
 </config>
