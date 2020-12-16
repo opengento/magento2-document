@@ -146,17 +146,6 @@
             <argument name="fetchStrategy" xsi:type="object">Opengento\Document\Model\ResourceModel\Document\Collection\FetchStrategy</argument>
         </arguments>
     </type>
-    <virtualType name="Opengento\Document\Model\Cache\Document" type="Opengento\Document\Model\Cache\Cache">
-        <arguments>
-            <argument name="cacheList" xsi:type="array">
-                <item name="block_html" xsi:type="const">Magento\Framework\App\Cache\Type\Block::TYPE_IDENTIFIER</item>
-                <item name="collections" xsi:type="const">Magento\Framework\App\Cache\Type\Collection::TYPE_IDENTIFIER</item>
-            </argument>
-            <argument name="tags" xsi:type="array">
-                <item name="document" xsi:type="const">Opengento\Document\Model\Document::CACHE_TAG</item>
-            </argument>
-        </arguments>
-    </virtualType>
     <!-- Global Settings -->
     <preference for="Opengento\Document\Model\Document\Operation\CreateFromFileInterface" type="Opengento\Document\Model\Document\Operation\CreateFromFile"/>
     <type name="Opengento\Document\Model\Document\ProcessorFactory">

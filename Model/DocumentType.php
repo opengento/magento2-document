@@ -13,11 +13,12 @@ use Magento\Framework\DataObject\IdentityInterface;
 use Magento\Framework\Model\AbstractExtensibleModel;
 use Opengento\Document\Api\Data\DocumentTypeExtensionInterface;
 use Opengento\Document\Api\Data\DocumentTypeInterface;
+use function array_merge;
 use function explode;
 
 class DocumentType extends AbstractExtensibleModel implements DocumentTypeInterface, IdentityInterface
 {
-    public const CACHE_TAG = 'opengento_document_type';
+    public const CACHE_TAG = 'ope_dt';
 
     protected function _construct(): void
     {
@@ -28,7 +29,12 @@ class DocumentType extends AbstractExtensibleModel implements DocumentTypeInterf
 
     public function getIdentities(): array
     {
-        return [self::CACHE_TAG . '_' . $this->getId(), self::CACHE_TAG . '_' . $this->getCode()];
+        return [self::CACHE_TAG, self::CACHE_TAG . '_' . $this->getId(), self::CACHE_TAG . '_' . $this->getCode()];
+    }
+
+    public function getCacheTags(): array
+    {
+        return $this->getIdentities() ?: parent::getCacheTags();
     }
 
     public function getId(): ?int
