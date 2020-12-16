@@ -28,10 +28,10 @@
         "roave/security-advisories": "dev-master"
     },
     "suggest": {
-        "opengento/module-document-product-link": "",
-        "opengento/module-document-product-search": "",
-        "opengento/module-document-search": "",
-        "opengento/module-document-widget": ""
+        "opengento/module-document-product-link": "This module aims to help merchants to link their documents to products in Magento 2.",
+        "opengento/module-document-product-search": "This module aims to make documents searchable with product keywords in Magento 2.",
+        "opengento/module-document-search": "This module aims to make documents searchable for customers in Magento 2.",
+        "opengento/module-document-widget": "This module aims to help merchants to manage easily their documents on the Magento 2 storefront."
     },
     "license": [
         "MIT"
