@@ -13,7 +13,6 @@ use Magento\Framework\DataObject\IdentityInterface;
 use Magento\Framework\Model\AbstractExtensibleModel;
 use Opengento\Document\Api\Data\DocumentTypeExtensionInterface;
 use Opengento\Document\Api\Data\DocumentTypeInterface;
-use function array_merge;
 use function explode;
 
 class DocumentType extends AbstractExtensibleModel implements DocumentTypeInterface, IdentityInterface
