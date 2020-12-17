@@ -10,6 +10,7 @@ namespace Opengento\Document\Model\File;
 use Magento\Framework\Exception\ValidatorException;
 use Magento\Framework\File\Mime;
 use Magento\Framework\Phrase;
+use function implode;
 use function in_array;
 use function pathinfo;
 use function strtolower;
@@ -84,7 +85,10 @@ final class Validator
         $extension = strtolower(pathinfo($file, PATHINFO_EXTENSION));
 
         if (!in_array($extension, $allowedExtensions, true)) {
-            throw new ValidatorException(new Phrase('The file extension "%1" is not allowed.', [$extension]));
+            throw new ValidatorException(new Phrase(
+                'The file extension "%1" is not part of the allowed list: "%2".',
+                [$extension, implode(', ', $allowedExtensions)]
+            ));
         }
         if ($this->mime->getMimeType($file) !== (self::MIME_TYPES[$extension] ?? 'application/octet-stream')) {
             throw new ValidatorException(new Phrase('The file extension "%1" does not match its mime type.'));

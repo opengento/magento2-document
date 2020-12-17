@@ -125,17 +125,19 @@ final class CustomProcessor implements ProcessorInterface
 
     public function execute(DocumentTypeInterface $documentType, string $filePath): DocumentInterface
     {
-        // $filePath is the path where the file is being moved
-        // You can change the destination path if you edit the file path value
-        // with $this->documentBuilder->setFilePath($newDestPath)
-        // and $this->documentBuilder->setFileName($newFileName)
+        // $filePath is the path where the source file is currently saved.
+        // You can change the destination path if want to.
+        // Edit the file path value with $this->documentBuilder->setFilePath($newDestPath).
+        // You can also rename the file with $this->documentBuilder->setFileName($newFileName)
 
-        $fileName = basename($filePath);
+        $destFilePath = $this->fileHelper->getFileDestPath($documentType, $filePath);
+        $fileName = basename($destFilePath);
+
         $this->documentBuilder->setTypeId($documentType->getId());
         $this->documentBuilder->setCode(Format::formatCode($fileName));
         $this->documentBuilder->setName(Format::formatName($fileName));
         $this->documentBuilder->setFileName($fileName);
-        $this->documentBuilder->setFilePath(dirname($this->fileHelper->getRelativeFilePath($filePath)));
+        $this->documentBuilder->setFilePath(dirname($this->fileHelper->getRelativeFilePath($destFilePath)));
 
         return $this->documentBuilder->create();
     }

@@ -40,12 +40,14 @@ final class SimpleProcessor implements ProcessorInterface
 
     public function execute(DocumentTypeInterface $documentType, string $filePath): DocumentInterface
     {
-        $fileName = basename($filePath);
+        $destFilePath = $this->fileHelper->getFileDestPath($documentType, $filePath);
+        $fileName = basename($destFilePath);
+
         $this->documentBuilder->setTypeId($documentType->getId());
         $this->documentBuilder->setCode(Format::formatCode($fileName));
         $this->documentBuilder->setName(Format::formatName($fileName));
         $this->documentBuilder->setFileName($fileName);
-        $this->documentBuilder->setFilePath(dirname($this->fileHelper->getRelativeFilePath($filePath)));
+        $this->documentBuilder->setFilePath(dirname($this->fileHelper->getRelativeFilePath($destFilePath)));
 
         return $this->documentBuilder->create();
     }

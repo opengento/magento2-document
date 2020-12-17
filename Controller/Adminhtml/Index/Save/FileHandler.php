@@ -99,6 +99,7 @@ final class FileHandler implements HandlerInterface
             $data['file_path'] = null;
         } elseif (isset($fileUploader[0]['path'], $fileUploader[0]['file'])) {
             $fileSrcPath = $fileUploader[0]['path'] . $fileUploader[0]['file'];
+            $this->rollbackData['destFilePath'] = $fileSrcPath;
 
             $this->validator->validate($fileSrcPath, $documentType->getFileAllowedExtensions());
 

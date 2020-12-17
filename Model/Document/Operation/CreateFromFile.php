@@ -43,8 +43,7 @@ final class CreateFromFile implements CreateFromFileInterface
 
     public function execute(DocumentTypeInterface $documentType, string $file): DocumentInterface
     {
-        $destFilePath = $this->fileHelper->getFileDestPath($documentType, $file);
-        $document = $this->processorFactory->get($documentType->getCode())->execute($documentType, $destFilePath);
+        $document = $this->processorFactory->get($documentType->getCode())->execute($documentType, $file);
         $destFilePath = $this->fileHelper->getFilePath($document);
         $this->fileHelper->moveFile($file, $destFilePath);
 
