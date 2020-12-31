@@ -113,7 +113,7 @@
                 <filter>text</filter>
             </settings>
         </column>
-        <column name="total_files" sortOrder="10">
+        <column name="total_files" sortOrder="100">
             <settings>
                 <label translate="true">Total Files</label>
                 <filter>textRange</filter>
