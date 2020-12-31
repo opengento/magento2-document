@@ -17,7 +17,7 @@
         "ext-dom": "*",
         "magento/framework": "^103.0",
         "magento/module-backend": "^102.0",
-        "magento/module-cache-invalidate": "^104.0",
+        "magento/module-cache-invalidate": "^100.4",
         "magento/module-config": "^101.0",
         "magento/module-page-cache": "^100.0",
         "magento/module-ui": "^101.0"
