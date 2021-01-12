@@ -8,7 +8,7 @@
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_MediaGalleryApi:etc/directory.xsd">
     <exclude>
         <patterns>
-            <pattern name="captcha">/^document/</pattern>
+            <pattern name="opengento_document">/^document/</pattern>
         </patterns>
     </exclude>
 </config>
