@@ -27,16 +27,6 @@
             </argument>
         </arguments>
     </type>
-    <virtualType name="Opengento\Document\Model\Validator\RegexCode" type="Magento\Framework\Validator\Regex">
-        <arguments>
-            <argument name="pattern" xsi:type="string">/^[a-z]+[a-z0-9_]+$/</argument>
-        </arguments>
-    </virtualType>
-    <type name="Opengento\Document\Model\Validator\Code">
-        <arguments>
-            <argument name="regex" xsi:type="object">Opengento\Document\Model\Validator\RegexCode</argument>
-        </arguments>
-    </type>
     <virtualType name="Opengento\Document\Model\ResourceModel\DocumentType\RelationComposite" type="Magento\Framework\Model\ResourceModel\Db\VersionControl\RelationComposite">
         <arguments>
             <argument name="relationProcessors" xsi:type="array">
@@ -44,6 +34,16 @@
             </argument>
         </arguments>
     </virtualType>
+    <virtualType name="Opengento\Document\Model\DocumentType\Validator\RegexCode" type="Magento\Framework\Validator\Regex">
+        <arguments>
+            <argument name="pattern" xsi:type="string">/^[a-z]+[a-z0-9_]+$/</argument>
+        </arguments>
+    </virtualType>
+    <type name="Opengento\Document\Model\DocumentType\Validator\Code">
+        <arguments>
+            <argument name="validator" xsi:type="object">Opengento\Document\Model\DocumentType\Validator\RegexCode</argument>
+        </arguments>
+    </type>
     <virtualType name="Opengento\Document\Model\DocumentType\Validator" type="Opengento\Document\Model\Validator">
         <arguments>
             <argument name="validators" xsi:type="array">
@@ -64,6 +64,16 @@
             </argument>
         </arguments>
     </virtualType>
+    <virtualType name="Opengento\Document\Model\Document\Validator\RegexCode" type="Magento\Framework\Validator\Regex">
+        <arguments>
+            <argument name="pattern" xsi:type="string">/^[a-z]+[a-z0-9_]+$/</argument>
+        </arguments>
+    </virtualType>
+    <type name="Opengento\Document\Model\Document\Validator\Code">
+        <arguments>
+            <argument name="validator" xsi:type="object">Opengento\Document\Model\Document\Validator\RegexCode</argument>
+        </arguments>
+    </type>
     <virtualType name="Opengento\Document\Model\Document\Validator" type="Opengento\Document\Model\Validator">
         <arguments>
             <argument name="validators" xsi:type="array">

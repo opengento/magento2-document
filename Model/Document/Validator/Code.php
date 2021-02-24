@@ -9,20 +9,20 @@ namespace Opengento\Document\Model\Document\Validator;
 
 use Magento\Framework\Phrase;
 use Magento\Framework\Validator\AbstractValidator;
+use Magento\Framework\Validator\ValidatorInterface;
 use Opengento\Document\Api\Data\DocumentInterface;
-use Opengento\Document\Model\Validator\Code as CodeValidator;
 
 final class Code extends AbstractValidator
 {
     /**
-     * @var CodeValidator
+     * @var ValidatorInterface
      */
-    private $codeValidator;
+    private $validator;
 
     public function __construct(
-        CodeValidator $codeValidator
+        ValidatorInterface $validator
     ) {
-        $this->codeValidator = $codeValidator;
+        $this->validator = $validator;
     }
 
     public function isValid($value): bool
@@ -30,8 +30,8 @@ final class Code extends AbstractValidator
         $this->_clearMessages();
 
         if ($value instanceof DocumentInterface) {
-            if (!$this->codeValidator->isValid($value->getCode())) {
-                $this->_addMessages($this->codeValidator->getMessages());
+            if (!$this->validator->isValid($value->getCode())) {
+                $this->_addMessages($this->validator->getMessages());
             }
         } else {
             $this->_addMessages([new Phrase('The entity must implements "%1".', [DocumentInterface::class])]);
