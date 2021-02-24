@@ -51,7 +51,7 @@ final class CreateFromFile implements CreateFromFileInterface
             return $this->documentRepository->save($document);
         } catch (CouldNotSaveException $e) {
             $this->fileHelper->moveFile($destFilePath, $file);
-            throw $e;
+            throw $e->getPrevious() ?? $e;
         }
     }
 }
