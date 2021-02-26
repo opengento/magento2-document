@@ -115,14 +115,12 @@ final class File
     {
         try {
             $directoryWrite = $this->filesystem->getDirectoryWrite(DirectoryList::MEDIA);
-            if ($filePath && $directoryWrite->isFile($filePath)) {
-                return $directoryWrite->delete($filePath);
-            }
+            return $filePath && $directoryWrite->isFile($filePath) && $directoryWrite->delete($filePath);
         } catch (FileSystemException $e) {
             $this->logger->error($e->getLogMessage(), $e->getTrace());
-
-            return false;
         }
+
+        return false;
     }
 
     private function resolveFileSubPath(DocumentTypeInterface $documentType, string $fileName): string
