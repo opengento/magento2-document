@@ -63,7 +63,7 @@ The thumbnail can be resized in order to optimize the performance.
 Create a new file `resource_document_types.xml` in the `etc/` folder of your module:
 
 ```xml
-<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:mpbio:document:etc/resource_document_types.xsd">
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:opengento:document:etc/resource_document_types.xsd">
     <documentType code="cert">
         <scheduledImport>true</scheduledImport>
         <visibility>public</visibility>
