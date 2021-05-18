@@ -162,6 +162,7 @@ final class DocumentRepository implements DocumentRepositoryInterface
 
         /** @var DocumentSearchResultsInterface $searchResults */
         $searchResults = $this->searchResultsFactory->create();
+        $searchResults->setSearchCriteria($searchCriteria);
         $searchResults->setItems($collection->getItems());
         $searchResults->setTotalCount($collection->getSize());
 
