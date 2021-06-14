@@ -43,7 +43,7 @@ final class DeleteButton implements ButtonProviderInterface
                 'label' => new Phrase('Delete'),
                 'class' => 'delete',
                 'on_click' => sprintf(
-                    'deleteConfirm(\'%s\', \'%s\')',
+                    'deleteConfirm(\'%s\', \'%s\', {"data": {}})',
                     new Phrase('Are you sure you want to do this?'),
                     $this->urlBuilder->getUrl('*/*/delete', ['id' => $entityId])
                 ),
