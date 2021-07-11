@@ -95,7 +95,7 @@
             </argument>
         </arguments>
     </virtualType>
-    <virtualType name="Opengento\Document\DocumentType\SearchCriteria\CollectionProcessor" type="Magento\Framework\Api\SearchCriteria\CollectionProcessor">
+    <virtualType name="Opengento\Document\Model\DocumentType\SearchCriteria\CollectionProcessor" type="Magento\Framework\Api\SearchCriteria\CollectionProcessor">
         <arguments>
             <argument name="processors" xsi:type="array">
                 <item name="filters" xsi:type="object">Opengento\Document\Model\DocumentType\SearchCriteria\CollectionProcessor\FilterProcessor</item>
@@ -104,7 +104,7 @@
     </virtualType>
     <type name="Opengento\Document\Model\DocumentTypeRepository">
         <arguments>
-            <argument name="collectionProcessor" xsi:type="object">Opengento\Document\DocumentType\SearchCriteria\CollectionProcessor</argument>
+            <argument name="collectionProcessor" xsi:type="object">Opengento\Document\Model\DocumentType\SearchCriteria\CollectionProcessor</argument>
         </arguments>
     </type>
     <virtualType name="Opengento\Document\Model\Document\SearchCriteria\CollectionProcessor\FilterProcessor" type="Magento\Framework\Api\SearchCriteria\CollectionProcessor\FilterProcessor">

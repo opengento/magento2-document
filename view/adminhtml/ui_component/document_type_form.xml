@@ -73,43 +73,31 @@
                 <dataScope>code</dataScope>
             </settings>
         </input>
-        <field name="scheduled_import" formElement="select" sortOrder="40">
+        <select name="scheduled_import" sortOrder="40">
             <settings>
                 <dataType>select</dataType>
                 <label translate="true">Scheduled Import</label>
+                <options class="Magento\Config\Model\Config\Source\Enabledisable"/>
+                <caption translate="true">-- Please Select --</caption>
                 <validation>
                     <rule name="required-entry" xsi:type="boolean">true</rule>
                 </validation>
                 <dataScope>scheduled_import</dataScope>
             </settings>
-            <formElements>
-                <select>
-                    <settings>
-                        <options class="Magento\Config\Model\Config\Source\Enabledisable"/>
-                        <caption translate="true">-- Please Select --</caption>
-                    </settings>
-                </select>
-            </formElements>
-        </field>
-        <field name="visibility" formElement="select" sortOrder="50">
+        </select>
+        <select name="visibility" sortOrder="50">
             <settings>
                 <dataType>select</dataType>
                 <label translate="true">Visibility</label>
                 <notice>Please check the server access rules to the document type's paths when "Private" is enabled.</notice>
+                <options class="Opengento\Document\Model\Config\Source\Visibility"/>
+                <caption translate="true">-- Please Select --</caption>
                 <validation>
                     <rule name="required-entry" xsi:type="boolean">true</rule>
                 </validation>
                 <dataScope>visibility</dataScope>
             </settings>
-            <formElements>
-                <select>
-                    <settings>
-                        <options class="Opengento\Document\Model\Config\Source\Visibility"/>
-                        <caption translate="true">-- Please Select --</caption>
-                    </settings>
-                </select>
-            </formElements>
-        </field>
+        </select>
         <input name="file_source_path" sortOrder="60">
             <settings>
                 <dataType>text</dataType>

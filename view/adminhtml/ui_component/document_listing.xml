@@ -20,7 +20,7 @@
             <button name="add">
                 <url path="*/*/new"/>
                 <class>primary</class>
-                <label translate="true">Add New document</label>
+                <label translate="true">Add New Document</label>
             </button>
         </buttons>
     </settings>
