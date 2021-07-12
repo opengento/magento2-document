@@ -12,7 +12,7 @@ use Magento\Framework\Filesystem\Glob;
 use Magento\Framework\Phrase;
 use Opengento\Document\Api\Data\DocumentInterface;
 use Opengento\Document\Api\Data\DocumentTypeInterface;
-use Opengento\Document\Model\Document\Helper\File;
+use Opengento\Document\Model\Document\Filesystem\File;
 use Opengento\Document\Model\Document\Import\StatusUpdaterInterface;
 use Opengento\Document\Model\Document\Operation\CreateFromFileInterface;
 use Psr\Log\LoggerInterface;

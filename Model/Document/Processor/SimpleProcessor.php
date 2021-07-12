@@ -9,8 +9,8 @@ namespace Opengento\Document\Model\Document\Processor;
 
 use Opengento\Document\Api\Data\DocumentInterface;
 use Opengento\Document\Api\Data\DocumentTypeInterface;
-use Opengento\Document\Model\Document\Helper\File;
-use Opengento\Document\Model\Document\Helper\Format;
+use Opengento\Document\Model\Document\Filesystem\File;
+use Opengento\Document\Model\Document\Filesystem\Format;
 use Opengento\Document\Model\Document\ProcessorInterface;
 use Opengento\Document\Model\DocumentBuilder;
 use function basename;

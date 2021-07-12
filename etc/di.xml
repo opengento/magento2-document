@@ -290,6 +290,18 @@
             <argument name="configData" xsi:type="object">Opengento\Document\Config\DocumentType\ConfigData</argument>
         </arguments>
     </type>
+    <preference for="Opengento\Document\Model\Document\Filesystem\PathResolverInterface" type="Opengento\Document\Model\Document\Filesystem\PathResolver"/>
+    <type name="Opengento\Document\Model\Document\Filesystem\PathResolver">
+        <arguments>
+            <argument name="resolvers" xsi:type="array">
+                <item name="code" xsi:type="array">
+                    <item name="sortOrder" xsi:type="number">100</item>
+                    <item name="resolver" xsi:type="object">Opengento\Document\Model\Document\Filesystem\PathResolver\CodeResolver</item>
+                </item>
+            </argument>
+        </arguments>
+    </type>
+    <preference for="Opengento\Document\Model\Document\Filesystem\UrlResolverInterface" type="Opengento\Document\Model\Document\Filesystem\UrlResolver"/>
     <!-- UI Components -->
     <virtualType name="Opengento\Document\Ui\Component\DataProvider\DocumentType\Collection" type="Magento\Framework\View\Element\UiComponent\DataProvider\SearchResult">
         <arguments>

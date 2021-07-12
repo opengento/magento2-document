@@ -11,7 +11,7 @@ use Magento\Framework\App\Filesystem\DirectoryList;
 use Magento\Framework\Event\ManagerInterface;
 use Magento\Framework\Exception\FileSystemException;
 use Magento\Framework\Filesystem;
-use Opengento\Document\Model\Document\Helper\File;
+use Opengento\Document\Model\Document\Filesystem\File;
 
 /**
  * @api

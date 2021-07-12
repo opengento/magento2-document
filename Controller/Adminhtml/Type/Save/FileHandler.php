@@ -10,7 +10,7 @@ namespace Opengento\Document\Controller\Adminhtml\Type\Save;
 use Magento\Framework\App\RequestInterface;
 use Magento\Framework\EntityManager\HydratorPool;
 use Opengento\Document\Api\Data\DocumentTypeInterface;
-use Opengento\Document\Model\Document\Helper\File;
+use Opengento\Document\Model\Document\Filesystem\File;
 
 final class FileHandler implements HandlerInterface
 {

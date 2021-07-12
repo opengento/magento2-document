@@ -5,7 +5,7 @@
  */
 declare(strict_types=1);
 
-namespace Opengento\Document\Model\Document\Helper;
+namespace Opengento\Document\Model\Document\Filesystem;
 
 use Magento\Framework\App\Filesystem\DirectoryList;
 use Magento\Framework\Exception\FileSystemException;
@@ -34,7 +34,6 @@ use const PATHINFO_FILENAME;
 final class File
 {
     public const DOCUMENT_PATH = 'document' . DIRECTORY_SEPARATOR;
-    public const FILE_PATH = self::DOCUMENT_PATH . 'file' . DIRECTORY_SEPARATOR;
     public const IMAGE_PATH = self::DOCUMENT_PATH . 'image' . DIRECTORY_SEPARATOR;
     public const IMAGE_CACHE_PATH = self::IMAGE_PATH . 'cache' . DIRECTORY_SEPARATOR;
     public const TMP_PATH = self::DOCUMENT_PATH . 'tmp' . DIRECTORY_SEPARATOR;
@@ -43,6 +42,11 @@ final class File
      * @var Filesystem
      */
     private $filesystem;
+
+    /**
+     * @var PathResolverInterface
+     */
+    private $pathResolver;
 
     /**
      * @var LoggerInterface
@@ -56,17 +60,19 @@ final class File
 
     public function __construct(
         Filesystem $filesystem,
+        PathResolverInterface $pathResolver,
         LoggerInterface $logger,
         bool $allowRenameFiles = true
     ) {
         $this->filesystem = $filesystem;
+        $this->pathResolver = $pathResolver;
         $this->logger = $logger;
         $this->allowRenameFiles = $allowRenameFiles;
     }
 
     public function getFileDestPath(DocumentTypeInterface $documentType, string $filePath): string
     {
-        return $this->resolveDestFilePath($documentType, $filePath, self::FILE_PATH);
+        return $this->resolveDestFilePath($documentType, $filePath, $this->resolvePath($documentType, 'file'));
     }
 
     public function getImageDestPath(DocumentTypeInterface $documentType, string $filePath): string
@@ -93,7 +99,7 @@ final class File
     public function lookupFiles(DocumentTypeInterface $documentType, ?int $flags = null): array
     {
         $sourcePath = rtrim($this->filesystem->getDirectoryRead(DirectoryList::MEDIA)->getAbsolutePath(
-            self::FILE_PATH . ltrim($documentType->getFileSourcePath(), DIRECTORY_SEPARATOR)
+            $this->resolvePath($documentType, 'file') . ltrim($documentType->getFileSourcePath(), DIRECTORY_SEPARATOR)
         ), DIRECTORY_SEPARATOR);
 
         return Glob::glob(
@@ -121,6 +127,11 @@ final class File
         }
 
         return false;
+    }
+
+    private function resolvePath(DocumentTypeInterface $documentType, string $fileType): string
+    {
+        return $this->pathResolver->resolvePath($documentType) . DIRECTORY_SEPARATOR . $fileType. DIRECTORY_SEPARATOR;
     }
 
     private function resolveFileSubPath(DocumentTypeInterface $documentType, string $fileName): string

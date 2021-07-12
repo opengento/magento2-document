@@ -11,7 +11,7 @@ use Magento\Framework\Filesystem\Glob;
 use Magento\Ui\DataProvider\Modifier\ModifierInterface;
 use Opengento\Document\Api\Data\DocumentTypeInterface;
 use Opengento\Document\Api\Data\DocumentTypeInterfaceFactory;
-use Opengento\Document\Model\Document\Helper\File as FileHelper;
+use Opengento\Document\Model\Document\Filesystem\File as FileHelper;
 use function count;
 
 final class PendingFiles implements ModifierInterface

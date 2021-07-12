@@ -14,7 +14,7 @@ use Magento\Framework\Exception\ValidatorException;
 use Opengento\Document\Api\Data\DocumentInterface;
 use Opengento\Document\Api\Data\DocumentTypeInterface;
 use Opengento\Document\Api\DocumentTypeRepositoryInterface;
-use Opengento\Document\Model\Document\Helper\File;
+use Opengento\Document\Model\Document\Filesystem\File;
 use Opengento\Document\Model\File\Validator;
 use function array_merge;
 use function basename;

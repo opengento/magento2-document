@@ -10,7 +10,7 @@ namespace Opengento\Document\Model\ResourceModel\Document\Relation;
 use Magento\Framework\Model\AbstractModel;
 use Magento\Framework\Model\ResourceModel\Db\VersionControl\RelationInterface;
 use Opengento\Document\Api\Data\DocumentInterface;
-use Opengento\Document\Model\Document\Helper\File as FileHelper;
+use Opengento\Document\Model\Document\Filesystem\File as FileHelper;
 use const DIRECTORY_SEPARATOR;
 
 final class File implements RelationInterface

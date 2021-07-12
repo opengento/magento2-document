@@ -11,7 +11,7 @@ use Magento\Framework\Exception\CouldNotSaveException;
 use Opengento\Document\Api\Data\DocumentInterface;
 use Opengento\Document\Api\Data\DocumentTypeInterface;
 use Opengento\Document\Api\DocumentRepositoryInterface;
-use Opengento\Document\Model\Document\Helper\File;
+use Opengento\Document\Model\Document\Filesystem\File;
 use Opengento\Document\Model\Document\ProcessorFactory;
 
 final class CreateFromFile implements CreateFromFileInterface

@@ -12,7 +12,7 @@ use Magento\Framework\Exception\NoSuchEntityException;
 use Magento\Framework\Filesystem;
 use Magento\Ui\DataProvider\Modifier\ModifierInterface;
 use Opengento\Document\Api\DocumentTypeRepositoryInterface;
-use Opengento\Document\Model\Document\Helper\File as FileHelper;
+use Opengento\Document\Model\Document\Filesystem\File as FileHelper;
 use Opengento\Document\Model\Document\RegistryInterface;
 use Opengento\Document\Model\File\Info as FileInfo;
 use Opengento\Document\Model\File\Url as UrlHelper;

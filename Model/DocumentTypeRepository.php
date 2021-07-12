@@ -21,7 +21,7 @@ use Opengento\Document\Api\Data\DocumentTypeInterfaceFactory;
 use Opengento\Document\Api\Data\DocumentTypeSearchResultsInterface;
 use Opengento\Document\Api\Data\DocumentTypeSearchResultsInterfaceFactory;
 use Opengento\Document\Api\DocumentTypeRepositoryInterface;
-use Opengento\Document\Model\Document\Helper\File;
+use Opengento\Document\Model\Document\Filesystem\File;
 use Opengento\Document\Model\ResourceModel\DocumentType as DocumentTypeDb;
 use Opengento\Document\Model\ResourceModel\DocumentType\Collection;
 use Opengento\Document\Model\ResourceModel\DocumentType\CollectionFactory;

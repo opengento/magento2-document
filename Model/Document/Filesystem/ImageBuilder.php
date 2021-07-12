@@ -5,7 +5,7 @@
  */
 declare(strict_types=1);
 
-namespace Opengento\Document\Model\Document\Helper;
+namespace Opengento\Document\Model\Document\Filesystem;
 
 use Magento\Framework\Exception\InputException;
 use Magento\Framework\Exception\NoSuchEntityException;

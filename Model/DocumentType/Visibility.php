@@ -9,6 +9,6 @@ namespace Opengento\Document\Model\DocumentType;
 
 final class Visibility
 {
-    public const VISIBILITY_PRIVATE = 'private';
+    public const VISIBILITY_PRIVATE = 'private';//todo rename as URL ONLY?
     public const VISIBILITY_PUBLIC = 'public';
 }

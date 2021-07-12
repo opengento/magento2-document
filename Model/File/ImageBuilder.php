@@ -12,7 +12,7 @@ use Magento\Framework\Exception\InputException;
 use Magento\Framework\Filesystem;
 use Magento\Framework\Image\Factory;
 use Magento\Framework\View\ConfigInterface;
-use Opengento\Document\Model\Document\Helper\File;
+use Opengento\Document\Model\Document\Filesystem\File;
 use function array_slice;
 use function basename;
 use function implode;
