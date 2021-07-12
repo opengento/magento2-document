@@ -27,7 +27,6 @@ final class DocumentTypes implements OptionSourceInterface
         CollectionFactory $collectionFactory
     ) {
         $this->collectionFactory = $collectionFactory;
-        $this->options;
     }
 
     public function toOptionArray(): array

@@ -29,7 +29,7 @@ final class PathResolver implements PathResolverInterface
         usort(
             $resolvers,
             static function (array $resolverA, array $resolverB): int {
-                return $resolverA['sortOrder'] <=> $resolverB['sortOrder'];
+                return ($resolverA['sortOrder'] ?? 0) <=> ($resolverB['sortOrder'] ?? 0);
             }
         );
         $this->resolvers = array_column($resolvers, 'resolver');

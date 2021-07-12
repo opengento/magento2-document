@@ -10,7 +10,7 @@ namespace Opengento\Document\Model\Document;
 use Opengento\Document\Api\Data\DocumentInterface;
 
 /**
- * @æpi
+ * @api
  */
 interface RegistryInterface
 {

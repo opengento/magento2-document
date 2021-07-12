@@ -50,18 +50,24 @@
                 <dataScope>entity_id</dataScope>
             </settings>
         </hidden>
-        <select name="type_id" sortOrder="20">
+        <field name="type_id" formElement="select" sortOrder="20" >
             <settings>
                 <dataType>select</dataType>
                 <label translate="true">Document Type</label>
-                <options class="Opengento\DocumentRestrict\Model\Config\Source\DocumentTypes"/>
-                <caption translate="true">-- Please Select --</caption>
                 <validation>
                     <rule name="required-entry" xsi:type="boolean">true</rule>
                 </validation>
                 <dataScope>type_id</dataScope>
             </settings>
-        </select>
+            <formElements>
+                <select>
+                    <settings>
+                        <options class="Opengento\Document\Model\Config\Source\DocumentTypes"/>
+                        <caption translate="true">-- Please Select --</caption>
+                    </settings>
+                </select>
+            </formElements>
+        </field>
         <input name="name" sortOrder="30">
             <settings>
                 <dataType>text</dataType>
@@ -93,15 +99,21 @@
                 <dataScope>description</dataScope>
             </settings>
         </textarea>
-        <select name="file_locale" sortOrder="60">
+        <field name="file_locale" formElement="select" sortOrder="60" >
             <settings>
                 <dataType>select</dataType>
                 <label translate="true">File Locale</label>
-                <options class="Magento\Config\Model\Config\Source\Locale"/>
-                <caption translate="true">-- Please Select --</caption>
                 <dataScope>file_locale</dataScope>
             </settings>
-        </select>
+            <formElements>
+                <select>
+                    <settings>
+                        <options class="Magento\Config\Model\Config\Source\Locale"/>
+                        <caption translate="true">-- Please Select --</caption>
+                    </settings>
+                </select>
+            </formElements>
+        </field>
         <fileUploader name="file_uploader" sortOrder="70">
             <settings>
                 <label translate="true">File</label>
