@@ -10,7 +10,7 @@ namespace Opengento\Document\Model;
 use Magento\Framework\Validator\AbstractValidator;
 use Magento\Framework\Validator\ValidatorInterface;
 
-final class Validator extends AbstractValidator
+class Validator extends AbstractValidator
 {
     /**
      * @var ValidatorInterface[]

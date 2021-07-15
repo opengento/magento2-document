@@ -22,11 +22,11 @@
             </argument>
         </arguments>
     </type>
-    <virtualType name="Opengento\Document\Model\Document\Collection\FrontendVisibilityModifier" type="Opengento\Document\Model\Document\Collection\VisibilityModifier">
+    <type name="Opengento\Document\Model\Document\Collection\VisibilityModifier">
         <arguments>
             <argument name="visibilities" xsi:type="array">
                 <item name="public" xsi:type="const">Opengento\Document\Model\DocumentType\Visibility::VISIBILITY_PUBLIC</item>
             </argument>
         </arguments>
-    </virtualType>
+    </type>
 </config>

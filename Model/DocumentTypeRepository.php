@@ -26,7 +26,7 @@ use Opengento\Document\Model\ResourceModel\DocumentType as DocumentTypeDb;
 use Opengento\Document\Model\ResourceModel\DocumentType\Collection;
 use Opengento\Document\Model\ResourceModel\DocumentType\CollectionFactory;
 
-final class DocumentTypeRepository implements DocumentTypeRepositoryInterface
+class DocumentTypeRepository implements DocumentTypeRepositoryInterface
 {
     /**
      * @var DocumentTypeInterfaceFactory

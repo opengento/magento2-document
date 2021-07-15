@@ -73,24 +73,22 @@
                 <dataScope>code</dataScope>
             </settings>
         </input>
-        <field name="scheduled_import" formElement="select" sortOrder="40" >
+        <checkbox name="scheduled_import" component="Magento_Ui/js/form/element/single-checkbox-toggle-notice" sortOrder="40">
             <settings>
-                <dataType>select</dataType>
+                <dataType>boolean</dataType>
                 <label translate="true">Scheduled Import</label>
+                <description>If set to "yes", this will restrict import documents on schedule.</description>
+                <valueMap>
+                    <map name="false" xsi:type="number">0</map>
+                    <map name="true" xsi:type="number">1</map>
+                </valueMap>
+                <prefer>toggle</prefer>
                 <validation>
                     <rule name="required-entry" xsi:type="boolean">true</rule>
                 </validation>
                 <dataScope>scheduled_import</dataScope>
             </settings>
-            <formElements>
-                <select>
-                    <settings>
-                        <options class="Magento\Config\Model\Config\Source\Enabledisable"/>
-                        <caption translate="true">-- Please Select --</caption>
-                    </settings>
-                </select>
-            </formElements>
-        </field>
+        </checkbox>
         <field name="visibility" formElement="select" sortOrder="50" >
             <settings>
                 <dataType>select</dataType>
@@ -161,7 +159,7 @@
         </input>
         <dynamicRows name="file_allowed_extensions" sortOrder="100">
             <settings>
-                <label translate="true">File Allowed Extensions</label>
+                <label translate="true">Allowed Files</label>
                 <addButton>true</addButton>
                 <addButtonLabel translate="true">Add Extension</addButtonLabel>
                 <recordTemplate>record</recordTemplate>
