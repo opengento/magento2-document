@@ -7,6 +7,13 @@
 -->
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Store:etc/config.xsd">
     <default>
+        <system>
+            <media_storage_configuration>
+                <allowed_resources>
+                    <opengento_document>document</opengento_document>
+                </allowed_resources>
+            </media_storage_configuration>
+        </system>
         <opengento_document>
             <import>
                 <schedule>0 1 * * *</schedule>
