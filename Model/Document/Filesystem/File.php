@@ -72,7 +72,7 @@ final class File
 
     public function getFileDestPath(DocumentTypeInterface $documentType, string $filePath): string
     {
-        return $this->resolveDestFilePath($documentType, $filePath, $this->resolvePath($documentType, 'file'));
+        return $this->resolveDestFilePath($documentType, $filePath, $this->resolvePath($documentType));
     }
 
     public function getImageDestPath(DocumentTypeInterface $documentType, string $filePath): string
@@ -88,7 +88,8 @@ final class File
 
     public function getImagePath(DocumentInterface $document): string
     {
-        return $this->filesystem->getDirectoryRead(DirectoryList::MEDIA)->getAbsolutePath($document->getImageFileName());
+        return $this->filesystem->getDirectoryRead(DirectoryList::MEDIA)
+            ->getAbsolutePath($document->getImageFileName());
     }
 
     public function getRelativeFilePath(string $filePath): string
@@ -99,7 +100,7 @@ final class File
     public function lookupFiles(DocumentTypeInterface $documentType, ?int $flags = null): array
     {
         $sourcePath = rtrim($this->filesystem->getDirectoryRead(DirectoryList::MEDIA)->getAbsolutePath(
-            $this->resolvePath($documentType, 'file') . ltrim($documentType->getFileSourcePath(), DIRECTORY_SEPARATOR)
+            $this->resolvePath($documentType) . ltrim($documentType->getFileSourcePath(), DIRECTORY_SEPARATOR)
         ), DIRECTORY_SEPARATOR);
 
         return Glob::glob(
@@ -129,21 +130,21 @@ final class File
         return false;
     }
 
-    private function resolvePath(DocumentTypeInterface $documentType, string $fileType): string
+    private function resolvePath(DocumentTypeInterface $documentType): string
     {
-        return $this->pathResolver->resolvePath($documentType) . DIRECTORY_SEPARATOR . $fileType. DIRECTORY_SEPARATOR;
+        return $this->pathResolver->resolvePath($documentType);
     }
 
     private function resolveFileSubPath(DocumentTypeInterface $documentType, string $fileName): string
     {
         return implode(
-                DIRECTORY_SEPARATOR,
-                array_slice(
-                    (array) mb_str_split(strtolower(preg_replace('/\W+/', '', pathinfo($fileName, PATHINFO_FILENAME)))),
-                    0,
-                    $documentType->getSubPathLength()
-                )
-            ) . DIRECTORY_SEPARATOR . $fileName;
+            DIRECTORY_SEPARATOR,
+            array_slice(
+                (array) mb_str_split(strtolower(preg_replace('/\W+/', '', pathinfo($fileName, PATHINFO_FILENAME)))),
+                0,
+                $documentType->getSubPathLength()
+            )
+        ) . DIRECTORY_SEPARATOR . $fileName;
     }
 
     private function resolveDestFilePath(

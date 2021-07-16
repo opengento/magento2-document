@@ -8,27 +8,37 @@ declare(strict_types=1);
 namespace Opengento\Document\Model\Document\Filesystem;
 
 use Opengento\Document\Api\Data\DocumentInterface;
+use function array_column;
+use function array_reduce;
+use function usort;
 
 final class UrlResolver implements UrlResolverInterface
 {
     /**
      * @var UrlResolverInterface[]
      */
-    private $urlResolvers;
+    private $resolvers;
 
     public function __construct(
-        array $urlResolvers = []
+        array $resolvers = []
     ) {
-        $this->urlResolvers = $urlResolvers;
+        usort(
+            $resolvers,
+            static function (array $resolverA, array $resolverB): int {
+                return ($resolverA['sortOrder'] ?? 0) <=> ($resolverB['sortOrder'] ?? 0);
+            }
+        );
+        $this->resolvers = array_column($resolvers, 'resolver');
     }
 
-    public function getUrl(DocumentInterface $document): ?string
+    public function getFileUrl(DocumentInterface $document): string
     {
-        $url = null;
-        foreach ($this->urlResolvers as $urlResolver) {
-            $url = $url ?: $urlResolver->getUrl($document);
-        }
-
-        return $url;
+        return array_reduce(
+            $this->resolvers,
+            static function (string $url, UrlResolverInterface $urlResolver) use ($document): string {
+                return $url ?: $urlResolver->getFileUrl($document);
+            },
+            ''
+        );
     }
 }

@@ -14,5 +14,5 @@ use Opengento\Document\Api\Data\DocumentInterface;
  */
 interface UrlResolverInterface
 {
-    public function getUrl(DocumentInterface $document): ?string;
+    public function getFileUrl(DocumentInterface $document): string;
 }

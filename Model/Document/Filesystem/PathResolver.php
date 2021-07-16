@@ -39,8 +39,8 @@ final class PathResolver implements PathResolverInterface
     {
         return $this->sanitizePath(array_reduce(
             $this->resolvers,
-            static function(string $path, PathResolverInterface $pathResolver) use ($documentType): string {
-                return $path . DIRECTORY_SEPARATOR . $pathResolver->resolvePath($documentType);
+            static function (string $path, PathResolverInterface $pathResolver) use ($documentType): string {
+                return $path . $pathResolver->resolvePath($documentType) . DIRECTORY_SEPARATOR;
             },
             ''
         ));

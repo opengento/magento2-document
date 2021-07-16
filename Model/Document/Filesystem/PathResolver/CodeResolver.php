@@ -12,7 +12,7 @@ use Opengento\Document\Model\Document\Filesystem\PathResolverInterface;
 
 final class CodeResolver implements PathResolverInterface
 {
-    public const DOCUMENT_PATH = 'document';
+    public const DOCUMENT_FILE_PATH = 'document/file/';
 
     private $paths;
 
@@ -24,6 +24,6 @@ final class CodeResolver implements PathResolverInterface
 
     public function resolvePath(DocumentTypeInterface $documentType): string
     {
-        return $this->paths[$documentType->getCode()] ?? self::DOCUMENT_PATH;
+        return $this->paths[$documentType->getCode()] ?? self::DOCUMENT_FILE_PATH;
     }
 }
